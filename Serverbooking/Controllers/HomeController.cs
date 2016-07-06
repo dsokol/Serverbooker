@@ -10,7 +10,8 @@ namespace Serverbooking.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            return Content("Hello World!");
+            //return View();
         }
 
         public ActionResult About()
