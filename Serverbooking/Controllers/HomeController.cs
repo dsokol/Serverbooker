@@ -27,5 +27,12 @@ namespace Serverbooking.Controllers
 
             return View();
         }
-    }
-}
+        public ActionResult ServerInfo()
+        {
+            var serverinfo = new List<object>();
+            serverinfo.Add(new { ServerID = "78078", Status = "Busy", ServerName = "TMR234", Environment = "RMS", ActiveBookingID = "Act234" });
+            return Json(serverinfo, JsonRequestBehavior.AllowGet);
+        }
+        
+     }
+ }
