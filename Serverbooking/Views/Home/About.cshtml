@@ -1,5 +1,14 @@
 ﻿@{
     ViewBag.Title = "About";
+    <script>
+    var Serverbooking = angular.module('Serverbooking', []);
+    Serverbooking.controller('ServerController', [ '$scope', function ($scope, $http) {
+        $http.get('ServerInfo').success(function (ServerInfo) {
+            $scope.serverinfo = ServerInfo;
+        });
+    }]);
+
+    </script>
 }
 <h2>@ViewBag.Title.</h2>
 <h3>@ViewBag.Message</h3>
@@ -9,15 +18,7 @@
     <p>Name : <input type="text" ng-model="name" placeholder="Enter name here" /></p>
     <h1>Hello {{name}}!</h1>
 </div>
-<script>
-    var Serverbooking = angular.module('Serverbooking', []);
-    Serverbooking.controller('ServerController', [ '$scope', function ($scope, $http) {
-        $http.get('ServerInfo').success(function (ServerInfo) {
-            $scope.serverinfo = ServerInfo;
-        });
-    }]);
 
-</script>
 <div ngcontroller="ServerController">
     <table>
         <tr>
@@ -31,7 +32,8 @@
             <td>{{serverinfo.ServerID}}</td>
             <td>{{serverinfo.Status}}</td>
             <td>{{serverinfo.ServerName}}</td>
-            <td>{{serverinfo.ActiveBookingID}}</td>
+            <td>{{serverinfo.Environment}}</td>
+            <td>{{name}}</td>
         </tr>
     </table>
   
