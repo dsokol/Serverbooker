@@ -14,8 +14,9 @@
     <script>
         var Serverbooking = angular.module('Serverbooking', []);
         Serverbooking.controller('ServerController', ['$scope', function ($scope, $http) {
-            $http.get('ServerInfo.json').success(function (ServerInfo) {
-                $scope.serverinfo = serverinfo.ServerInfo;
+            $http.get('h:/github/serverbooker/serverbooking/models/serverinfo.cs')
+                .success(function (data) {
+                $scope.serverinfo = data.ServerInfo;
             });
         }]);
 
@@ -29,7 +30,7 @@
                 <th>Environment</th>
                 <th>ActiveBookingID</th>
             </tr>
-            <tr ng-repeat="serverinfo in ServerInfo.HomeController ">
+            <tr ng-repeat="serverinfo in ServerInfo">
                 <td>{{serverinfo.ServerID}}</td>
                 <td>{{serverinfo.Status}}</td>
                 <td>{{serverinfo.ServerName}}</td>
@@ -39,3 +40,4 @@
         </table>
 
     </div>
+
