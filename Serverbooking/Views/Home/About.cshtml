@@ -14,7 +14,7 @@
     <script>
         var Serverbooking = angular.module('Serverbooking', []);
         Serverbooking.controller('ServerController', ['$scope', function ($scope, $http) {
-            $http.get('h:/github/serverbooker/serverbooking/models/serverinfo.cs')
+            $http.get('h:/github/Serverbooker/Serverbooking/models/ServerInfo.cs')
                 .success(function (data) {
                 $scope.serverinfo = data.ServerInfo;
             });
