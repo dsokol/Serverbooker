@@ -29,6 +29,8 @@ namespace Serverbooking
 
             bundles.Add(new ScriptBundle("~/bundles/angular").Include(
                 "~/Scripts/angular.js"));
+
+           
         }
     }
 }
