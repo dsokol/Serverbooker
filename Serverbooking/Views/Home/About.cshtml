@@ -12,8 +12,8 @@
         <h1>Hello {{name}}!</h1>
     </div>
     <script>
-        var Serverbooking = angular.module('Serverbooking', []);
-        Serverbooking.controller('ServerController', ['$scope', function ($scope, $http) {
+        var serverApp = angular.module('serverApp', []);
+        serverApp.controller('ServerCtrl', ['$scope', function ($scope, $http) {
             $http.get('http://localhost:59277/Home/ServerInfo')
                 .success(function (data) {
                 $scope.serverinfo = data;
@@ -21,7 +21,7 @@
         }]);
         
     </script>
-    <div ng-app='myApp' ng-controller="ServerController">
+    <div ng-app='serverApp' ng-controller="ServerCtrl">
         <table>
             <tr>
                 <th>ServerId</th>
@@ -31,7 +31,7 @@
                 <th>ActiveBookingID</th>
             </tr>
             <tr ng-repeat="serverinfo in ServerInfo">
-                <td>{{ServerID}}</td>
+                <td>{{serverinfo.ServerID}}</td>
                 <td>{{serverinfo.Status}}</td>
                 <td>{{serverinfo.ServerName}}</td>
                 <td>{{serverinfo.Environment}}</td>
