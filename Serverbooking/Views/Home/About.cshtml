@@ -16,7 +16,7 @@
         Serverbooking.controller('ServerController', ['$scope', function ($scope, $http) {
             $http.get('http://localhost:59277/Home/ServerInfo')
                 .success(function (data) {
-                $scope.serverinfo = data.ServerInfo;
+                $scope.serverinfo = data;
             });
         }]);
         
@@ -31,7 +31,7 @@
                 <th>ActiveBookingID</th>
             </tr>
             <tr ng-repeat="serverinfo in ServerInfo">
-                <td>{{serverinfo.ServerID}}</td>
+                <td>{{ServerID}}</td>
                 <td>{{serverinfo.Status}}</td>
                 <td>{{serverinfo.ServerName}}</td>
                 <td>{{serverinfo.Environment}}</td>
