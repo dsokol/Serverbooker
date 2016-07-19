@@ -14,14 +14,14 @@
     <script>
         var Serverbooking = angular.module('Serverbooking', []);
         Serverbooking.controller('ServerController', ['$scope', function ($scope, $http) {
-            $http.get('http://localhost:59277/Home/ServerInfo.json')
+            $http.get('http://localhost:59277/Home/ServerInfo')
                 .success(function (data) {
                 $scope.serverinfo = data.ServerInfo;
             });
         }]);
         
     </script>
-    <div ng-app='myApp' ngcontroller="ServerController">
+    <div ng-app='myApp' ng-controller="ServerController">
         <table>
             <tr>
                 <th>ServerId</th>
