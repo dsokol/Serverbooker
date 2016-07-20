@@ -7,38 +7,37 @@
     <h3>@ViewBag.Message</h3>
 
     <p>Use this area to provide additional information.</p>
-    <div ng-app="">
-        <p>Name : <input type="text" ng-model="name" placeholder="Enter name here" /></p>
-        <h1>Hello {{name}}!</h1>
-    </div>
 
-    <script>
-        var serverApp = angular.module('serverApp', []);
-        serverApp.controller('ServerCtrl', ['$scope', function ($scope, $http) {
-            $http.get('http://localhost:59277/Home/ServerInfo')
-                .success(function (data) {
-                $scope.serverinfo = data.data.data;
-            });
-        }]);
-        
-    </script>
-    <div ng-app='serverApp' ng-controller="ServerCtrl">
+    <div ng-app='serverApp' ng-controller="serverCtrl">
         <table> 
             <tr>
-                <th>ServerId</th>
+                <th>ServerID</th>
                 <th>Status</th>
                 <th>ServerName</th>
                 <th>Environment</th>
                 <th>ActiveBookingID</th>
             </tr>
-            <tr ng-repeat="serverinfo in ServerInfo">
-                <td>{{serverinfo.ServerID}}</td>
-                <td>{{serverinfo.Status}}</td>
-                <td>{{serverinfo.ServerName}}</td>
-                <td>{{serverinfo.Environment}}</td>
-                <td>{{serverinfo.ActiveBookingID}}</td>
+            <tr ng-repeat="x in info">
+                <td>{{ x.ServerID }}</td>
+                <td>{{ x.Status }}</td>
+                <td>{{ x.ServerName }}</td>
+                <td>{{ x.Environment }}</td>
+                <td>{{ x.ActiveBookingID }}</td>
             </tr>
         </table>
 
     </div>
+<script>
+        //alert('test');
+        var serverApp = angular.module('serverApp', []);
+        serverApp.controller('serverCtrl', function ($scope, $http) {
+            $http.get('/Home/Test')
+                .then(function (data) {
+                    $scope.info = data;
+                });
+        });
+        
+                
+
+</script>
 
