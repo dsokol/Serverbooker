@@ -7,6 +7,7 @@
     <h3>@ViewBag.Message</h3>
 
     <p>Use this area to provide additional information.</p>
+<script src="http://localhost:59277/Home/About"></script>
 
     <div ng-app='serverApp' ng-controller="serverCtrl">
         <table> 
@@ -17,23 +18,24 @@
                 <th>Environment</th>
                 <th>ActiveBookingID</th>
             </tr>
-            <tr ng-repeat="x in info">
-                <td>{{ x.ServerID }}</td>
-                <td>{{ x.Status }}</td>
-                <td>{{ x.ServerName }}</td>
-                <td>{{ x.Environment }}</td>
-                <td>{{ x.ActiveBookingID }}</td>
+            <tr ng-repeat="x in ServerInfo">
+                <td> {{ x.ServerID }} </td>
+                <td> {{ x.Status }} </td>
+                <td> {{ x.ServerName }} </td>
+                <td> {{ x.Environment }} </td>
+                <td> {{ x.ActiveBookingID }} </td>
+           
             </tr>
         </table>
 
-    </div>
+    </div> 
 <script>
         //alert('test');
         var serverApp = angular.module('serverApp', []);
         serverApp.controller('serverCtrl', function ($scope, $http) {
-            $http.get('/Home/Test')
+            $http.get('/Home/ServerInfo')
                 .then(function (data) {
-                    $scope.info = data;
+                    $scope.serverinfo = data;
                 });
         });
         
