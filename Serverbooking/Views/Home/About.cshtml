@@ -7,8 +7,21 @@
     <h3>@ViewBag.Message</h3>
 
     <p>Use this area to provide additional information.</p>
-<script src="http://localhost:59277/Home/About"></script>
+<style>
+    table, th, td {
+        border: 1px solid grey;
+        border-collapse: collapse;
+        padding: 5px;
+    }
 
+        table tr:nth-child(odd) {
+            background-color: #f1f1f1;
+        }
+
+        table tr:nth-child(even) {
+            background-color: #ffffff;
+        }
+</style>
     <div ng-app='serverApp' ng-controller="serverCtrl">
         <table> 
             <tr>
@@ -30,10 +43,10 @@
 
     </div> 
 <script>
-        //alert('test');
+       
         var serverApp = angular.module('serverApp', []);
         serverApp.controller('serverCtrl', function ($scope, $http) {
-            $http.get('/Home/ServerInfo')
+            $http.get('http://localhost:59277/Home/About')
                 .then(function (data) {
                     $scope.serverinfo = data;
                 });
