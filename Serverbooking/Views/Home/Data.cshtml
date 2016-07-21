@@ -1,0 +1,66 @@
+﻿@model IEnumerable<Serverbooking.Models.InfoServer>
+
+@{
+    ViewBag.Title = "Data";
+    Layout = "~/Views/Home/Data.cshtml";
+}
+<asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
+
+    Data
+
+</asp:Content>
+
+<asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+    <h2>Data</h2>
+
+ 
+    <table class="table">
+        <tr>
+            <th>
+                Status
+            </th>
+            <th>
+                ServerName
+            </th>
+            <th>
+                Environment
+            </th>
+            <th>
+                ActiveBookingID
+            </th>
+            <th></th>
+        </tr>
+
+        <% foreach (var item in Model){ %>
+        <tr>
+            <td>
+                <%= Html.ActionLink("Edit", "Edit", new { id = item.ServerID }) %> |
+                <%= ActionLink("Details", "Details", new { id = item.ServerID }) %> |
+            </td>
+            <td>
+                <%= Html.Encode(item.Status)
+            </td>
+            <td>
+                <%= Html.Encode(item.ServerName)
+            </td>
+            <td>
+                <%= Html.Encode(item.Environment)
+            </td>
+            <td>
+                <%= Html.Encode(item.ActiveBookingID)
+            </td>
+            <td>
+
+                <%= Html.Encode(String.Format("{0:g}", item.DateReleased)) %>
+            </td>
+        </tr>
+        <% } %>
+
+    </table>
+    <p>
+
+        <%= Html.ActionLink("Create New", "Create") %>
+
+    </p>
+
+</asp:Content>

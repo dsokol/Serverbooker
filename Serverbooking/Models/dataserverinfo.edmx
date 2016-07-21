@@ -1,0 +1,146 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ServerInfoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="BookingInfo">
+          <Key>
+            <PropertyRef Name="BookingID" />
+          </Key>
+          <Property Name="BookingID" Type="int" Nullable="false" />
+          <Property Name="ServerID" Type="int" Nullable="false" />
+          <Property Name="UserID" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CheckInTime" Type="datetime" Nullable="false" />
+          <Property Name="CheckOutTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="InfoServer">
+          <Key>
+            <PropertyRef Name="ServerID" />
+          </Key>
+          <Property Name="ServerID" Type="int" Nullable="false" />
+          <Property Name="Status" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ServerName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Environment" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ActiveBookingID" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_BookingInfo_InfoServer">
+          <End Role="InfoServer" Type="Self.InfoServer" Multiplicity="1" />
+          <End Role="BookingInfo" Type="Self.BookingInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="InfoServer">
+              <PropertyRef Name="ServerID" />
+            </Principal>
+            <Dependent Role="BookingInfo">
+              <PropertyRef Name="ServerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ServerInfoModelStoreContainer">
+          <EntitySet Name="BookingInfo" EntityType="Self.BookingInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="InfoServer" EntityType="Self.InfoServer" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_BookingInfo_InfoServer" Association="Self.FK_BookingInfo_InfoServer">
+            <End Role="InfoServer" EntitySet="InfoServer" />
+            <End Role="BookingInfo" EntitySet="BookingInfo" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ServerInfoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="BookingInfo">
+          <Key>
+            <PropertyRef Name="BookingID" />
+          </Key>
+          <Property Name="BookingID" Type="Int32" Nullable="false" />
+          <Property Name="ServerID" Type="Int32" Nullable="false" />
+          <Property Name="UserID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CheckInTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CheckOutTime" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="InfoServer" Relationship="Self.FK_BookingInfo_InfoServer" FromRole="BookingInfo" ToRole="InfoServer" />
+        </EntityType>
+        <EntityType Name="InfoServer">
+          <Key>
+            <PropertyRef Name="ServerID" />
+          </Key>
+          <Property Name="ServerID" Type="Int32" Nullable="false" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ServerName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Environment" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ActiveBookingID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="BookingInfo" Relationship="Self.FK_BookingInfo_InfoServer" FromRole="InfoServer" ToRole="BookingInfo" />
+        </EntityType>
+        <Association Name="FK_BookingInfo_InfoServer">
+          <End Role="InfoServer" Type="Self.InfoServer" Multiplicity="1" />
+          <End Role="BookingInfo" Type="Self.BookingInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="InfoServer">
+              <PropertyRef Name="ServerID" />
+            </Principal>
+            <Dependent Role="BookingInfo">
+              <PropertyRef Name="ServerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ServerInfoEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="BookingInfoes" EntityType="Self.BookingInfo" />
+          <EntitySet Name="InfoServers" EntityType="Self.InfoServer" />
+          <AssociationSet Name="FK_BookingInfo_InfoServer" Association="Self.FK_BookingInfo_InfoServer">
+            <End Role="InfoServer" EntitySet="InfoServers" />
+            <End Role="BookingInfo" EntitySet="BookingInfoes" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ServerInfoModelStoreContainer" CdmEntityContainer="ServerInfoEntities">
+          <EntitySetMapping Name="BookingInfoes">
+            <EntityTypeMapping TypeName="ServerInfoModel.BookingInfo">
+              <MappingFragment StoreEntitySet="BookingInfo">
+                <ScalarProperty Name="BookingID" ColumnName="BookingID" />
+                <ScalarProperty Name="ServerID" ColumnName="ServerID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="CheckInTime" ColumnName="CheckInTime" />
+                <ScalarProperty Name="CheckOutTime" ColumnName="CheckOutTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="InfoServers">
+            <EntityTypeMapping TypeName="ServerInfoModel.InfoServer">
+              <MappingFragment StoreEntitySet="InfoServer">
+                <ScalarProperty Name="ServerID" ColumnName="ServerID" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="ServerName" ColumnName="ServerName" />
+                <ScalarProperty Name="Environment" ColumnName="Environment" />
+                <ScalarProperty Name="ActiveBookingID" ColumnName="ActiveBookingID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
