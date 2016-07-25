@@ -1,69 +1,49 @@
 ﻿@model IEnumerable<Serverbooking.Models.InfoServer>
-
 @{
     ViewBag.Title = "Data";
-    Layout = "~/Views/Home/Data.cshtmml";
+    Layout = "~/Views/Home/Data.cshtml";
 }
-<asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" >
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Status)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ServerName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Environment)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ActiveBookingID)
+        </th>
+        <th></th>
+    </tr>
 
-    Data
-
-</asp:Content>
-
-
-<asp:Content ID="Content2" ContentPlaceHolderID="MainContent" >
-    <h2>Data</h2>
-
-
-    <table class="table">
-        <tr>
-            <th>
-                Status
-            </th>
-            <th>
-                ServerName
-            </th>
-            <th>
-                Environment
-            </th>
-            <th>
-                ActiveBookingID
-            </th>
-            <th></th>
-        </tr>
-
-        <% foreach (var item in Model){ %>
+    @foreach (var item in Model)
+    {
         <tr>
             <td>
-                <%= Html.ActionLink("Edit", "Edit", new { id = item.ServerID }) %> |
-                <%= ActionLink("Details", "Details", new { id = item.ServerID }) %> |
+                @Html.DisplayFor(modelItem => item.Status)
             </td>
             <td>
-                <%= Html.Encode(item.Status)
+                @Html.DisplayFor(modelItem => item.ServerName)
             </td>
             <td>
-                <%= Html.Encode(item.ServerName)
+                @Html.DisplayFor(modelItem => item.Environment)
             </td>
             <td>
-                <%= Html.Encode(item.Environment)
+                @Html.DisplayFor(modelItem => item.ActiveBookingID)
             </td>
             <td>
-                <%= Html.Encode(item.ActiveBookingID)
-            </td>
-            <td>
-
-                <%= Html.Encode(String.Format("{0:g}", item.DateReleased)) %>
+                @Html.ActionLink("Edit", "Edit", new { id = item.ServerID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.ServerID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ServerID })
             </td>
         </tr>
-        <% } %>
+    }
 
-    </table>
-    <p>
-
-        <%= Html.ActionLink("Create New", "Create") %>
-
-    </p>
-
-
-</asp:Content>
-
+</table>
