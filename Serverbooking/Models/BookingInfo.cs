@@ -17,7 +17,7 @@ namespace Serverbooking.Models
         public int BookingID { get; set; }
         public int ServerID { get; set; }
         public string UserID { get; set; }
-        public System.DateTime CheckInTime { get; set; }
+        public Nullable<System.DateTime> CheckInTime { get; set; }
         public Nullable<System.DateTime> CheckOutTime { get; set; }
     
         public virtual InfoServer InfoServer { get; set; }

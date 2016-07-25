@@ -24,7 +24,7 @@ namespace Serverbooking.Models
         public string Status { get; set; }
         public string ServerName { get; set; }
         public string Environment { get; set; }
-        public int ActiveBookingID { get; set; }
+        public Nullable<int> ActiveBookingID { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BookingInfo> BookingInfo { get; set; }

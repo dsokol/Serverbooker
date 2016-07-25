@@ -7,7 +7,7 @@
     <Property Name="BookingID" Type="Int32" Nullable="false" />
     <Property Name="ServerID" Type="Int32" Nullable="false" />
     <Property Name="UserID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="CheckInTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="CheckInTime" Type="DateTime" Precision="3" />
     <Property Name="CheckOutTime" Type="DateTime" Precision="3" />
     <NavigationProperty Name="InfoServer" Relationship="Self.FK_BookingInfo_InfoServer" FromRole="BookingInfo" ToRole="InfoServer" />
   </EntityType>
@@ -19,7 +19,7 @@
     <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="ServerName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="Environment" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="ActiveBookingID" Type="Int32" Nullable="false" />
+    <Property Name="ActiveBookingID" Type="Int32" />
     <NavigationProperty Name="BookingInfo" Relationship="Self.FK_BookingInfo_InfoServer" FromRole="InfoServer" ToRole="BookingInfo" />
   </EntityType>
   <Association Name="FK_BookingInfo_InfoServer">

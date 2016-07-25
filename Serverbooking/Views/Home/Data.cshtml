@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Serverbooking.Models.InfoServer>
+﻿@*@model IEnumerable<Serverbooking.Models.InfoServer>
 @{
     ViewBag.Title = "Data";
     Layout = "~/Views/Home/Data.cshtml";
@@ -6,8 +6,8 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table">
-    <tr>
+<table class="table">*@
+    @*<tr>
         <th>
             @Html.DisplayNameFor(model => model.Status)
         </th>
@@ -21,28 +21,29 @@
             @Html.DisplayNameFor(model => model.ActiveBookingID)
         </th>
         <th></th>
-    </tr>
-
+    </tr>*@
+<table>
     @foreach (var item in Model)
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Status)
+                @*@Html.DisplayFor(modelItem => item.Status)*@
+                @item.Status
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.ServerName)
+                @item.ServerName
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Environment)
+                @item.Environment
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.ActiveBookingID)
+                @item.ActiveBookingID.ToString()
             </td>
-            <td>
+            @*<td>
                 @Html.ActionLink("Edit", "Edit", new { id = item.ServerID }) |
                 @Html.ActionLink("Details", "Details", new { id = item.ServerID }) |
                 @Html.ActionLink("Delete", "Delete", new { id = item.ServerID })
-            </td>
+            </td>*@
         </tr>
     }
 

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="ServerInfoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="ServerInfoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="BookingInfo">
           <Key>
             <PropertyRef Name="BookingID" />
@@ -12,7 +12,7 @@
           <Property Name="BookingID" Type="int" Nullable="false" />
           <Property Name="ServerID" Type="int" Nullable="false" />
           <Property Name="UserID" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="CheckInTime" Type="datetime" Nullable="false" />
+          <Property Name="CheckInTime" Type="datetime" />
           <Property Name="CheckOutTime" Type="datetime" />
         </EntityType>
         <EntityType Name="InfoServer">
@@ -23,7 +23,7 @@
           <Property Name="Status" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="ServerName" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Environment" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="ActiveBookingID" Type="int" Nullable="false" />
+          <Property Name="ActiveBookingID" Type="int" />
         </EntityType>
         <Association Name="FK_BookingInfo_InfoServer">
           <End Role="InfoServer" Type="Self.InfoServer" Multiplicity="1" />
@@ -45,8 +45,7 @@
             <End Role="BookingInfo" EntitySet="BookingInfo" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ServerInfoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -57,7 +56,7 @@
           <Property Name="BookingID" Type="Int32" Nullable="false" />
           <Property Name="ServerID" Type="Int32" Nullable="false" />
           <Property Name="UserID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="CheckInTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CheckInTime" Type="DateTime" Precision="3" />
           <Property Name="CheckOutTime" Type="DateTime" Precision="3" />
           <NavigationProperty Name="InfoServer" Relationship="Self.FK_BookingInfo_InfoServer" FromRole="BookingInfo" ToRole="InfoServer" />
         </EntityType>
@@ -69,7 +68,7 @@
           <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="ServerName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Environment" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="ActiveBookingID" Type="Int32" Nullable="false" />
+          <Property Name="ActiveBookingID" Type="Int32" />
           <NavigationProperty Name="BookingInfo" Relationship="Self.FK_BookingInfo_InfoServer" FromRole="InfoServer" ToRole="BookingInfo" />
         </EntityType>
         <Association Name="FK_BookingInfo_InfoServer">

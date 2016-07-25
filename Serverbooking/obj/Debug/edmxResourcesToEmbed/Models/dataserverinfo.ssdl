@@ -7,7 +7,7 @@
     <Property Name="BookingID" Type="int" Nullable="false" />
     <Property Name="ServerID" Type="int" Nullable="false" />
     <Property Name="UserID" Type="varchar" MaxLength="50" Nullable="false" />
-    <Property Name="CheckInTime" Type="datetime" Nullable="false" />
+    <Property Name="CheckInTime" Type="datetime" />
     <Property Name="CheckOutTime" Type="datetime" />
   </EntityType>
   <EntityType Name="InfoServer">
@@ -18,7 +18,7 @@
     <Property Name="Status" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="ServerName" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="Environment" Type="varchar" MaxLength="50" Nullable="false" />
-    <Property Name="ActiveBookingID" Type="int" Nullable="false" />
+    <Property Name="ActiveBookingID" Type="int" />
   </EntityType>
   <Association Name="FK_BookingInfo_InfoServer">
     <End Role="InfoServer" Type="Self.InfoServer" Multiplicity="1" />
