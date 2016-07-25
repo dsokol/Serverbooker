@@ -4,22 +4,44 @@
     Layout = "~/Views/Home/Data.cshtml";
 }
 <p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">*@
+    @html.actionlink("create new", "create")
+</p>*@
+<style>
+    table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even){background-color: #f2f2f2}
+
+th {
+    background-color:  #4682B4;
+    color: white;
+}
+</style>
+<br />
+<h2>Server Information</h2>
 <table>
     <tr>
         <th>
-            @*@Html.DisplayNameFor(model =>*@ model.Status
+            ServerID
         </th>
         <th>
-            model.ServerName
+           Status
         </th>
         <th>
-             model.Environment
+           ServerName
         </th>
         <th>
-          model.ActiveBookingID
+             Environment
+        </th>
+        <th>
+          ActiveBookingID
         </th>
         <th></th>
     </tr>
@@ -28,7 +50,9 @@
     {
         <tr>
             <td>
-                @*@Html.DisplayFor(modelItem => item.Status)*@
+                @item.ServerID
+            </td>
+            <td>
                 @item.Status
             </td>
             <td>
@@ -40,11 +64,11 @@
             <td>
                 @item.ActiveBookingID
             </td>
-            @*<td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.ServerID }) |
+            <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = Model[item].ServerID }) |
                     @Html.ActionLink("Details", "Details", new { id = item.ServerID }) |
                     @Html.ActionLink("Delete", "Delete", new { id = item.ServerID })
-                </td>*@
+                </td>
         </tr>
     }
 

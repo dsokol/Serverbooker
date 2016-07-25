@@ -14,6 +14,7 @@ namespace Serverbooking.Controllers
     {
         public ActionResult Index()
         {
+            ViewBag.Message = "Index";
             return Content("Hello World!");
             //return View();
         }
