@@ -7,22 +7,23 @@
     @Html.ActionLink("Create New", "Create")
 </p>
 <table class="table">*@
-    @*<tr>
+<table>
+    <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Status)
+            @*@Html.DisplayNameFor(model =>*@ model.Status
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ServerName)
+            model.ServerName
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Environment)
+             model.Environment
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ActiveBookingID)
+          model.ActiveBookingID
         </th>
         <th></th>
-    </tr>*@
-<table>
+    </tr>
+
     @foreach (var item in Model)
     {
         <tr>
@@ -37,13 +38,13 @@
                 @item.Environment
             </td>
             <td>
-                @item.ActiveBookingID.ToString()
+                @item.ActiveBookingID
             </td>
             @*<td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.ServerID }) |
-                @Html.ActionLink("Details", "Details", new { id = item.ServerID }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.ServerID })
-            </td>*@
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ServerID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.ServerID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ServerID })
+                </td>*@
         </tr>
     }
 
