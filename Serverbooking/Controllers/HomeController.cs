@@ -52,7 +52,12 @@ namespace Serverbooking.Controllers
             var entities = new ServerInfoEntities();
             return View(entities.BookingInfo.ToList());
         }
-
+        
+        public ActionResult Edit(int id)
+        {
+                ServerInfoEntities server = ServerInfoEntities.ServerInfo(id);
+                return View(server);
+        }
     }
 
 }
