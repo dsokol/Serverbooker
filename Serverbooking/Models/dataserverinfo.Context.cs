@@ -25,7 +25,7 @@ namespace Serverbooking.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<BookingInfo> BookingInfoes { get; set; }
+        public virtual DbSet<BookingInfo> BookingInfo { get; set; }
         public virtual DbSet<InfoServer> InfoServers { get; set; }
     }
 }

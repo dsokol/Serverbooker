@@ -1,0 +1,81 @@
+﻿@*@model IEnumerable<Serverbooking.Models.BookingInfo>
+
+@{
+    ViewBag.Title = "BookingData";
+    Layout = "~/Views/Home/BookingData.cshtml";
+}*@
+
+<h2>Booking Data</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<style>
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    th, td {
+        text-align: left;
+        padding: 8px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+    th {
+        background-color: #4682B4;
+        color: white;
+    }
+</style>
+
+<table >
+    <tr>
+        <th>
+            BookingID
+        </th>
+        <th>
+            ServerID
+        </th>
+        <th>
+           UserID
+        </th>
+        <th>
+            Check In Time
+        </th>
+        <th>
+            Check Out Time
+        </th>
+
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @item.BookingID
+        </td>
+        <td>
+            @item.ServerID
+        </td>
+        <td>
+            @item.UserID
+        </td>
+        <td>
+            @item.CheckInTime
+        </td>
+        <td>
+            @item.CheckOutTime
+        </td>
+
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.BookingID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.BookingID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.BookingID })
+        </td>
+    </tr>
+}
+
+</table>

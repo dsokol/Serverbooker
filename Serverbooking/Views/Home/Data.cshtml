@@ -2,10 +2,8 @@
 @{
     ViewBag.Title = "Data";
     Layout = "~/Views/Home/Data.cshtml";
-}
-<p>
-    @html.actionlink("create new", "create")
-</p>*@
+}*@
+
 <style>
     table {
     border-collapse: collapse;
@@ -21,6 +19,9 @@ tr:nth-child(even){background-color: #f2f2f2}
 
 th {
     background-color:  #4682B4;
+    color: white;
+}
+a.my-class {
     color: white;
 }
 </style>
@@ -43,7 +44,10 @@ th {
         <th>
           ActiveBookingID
         </th>
-        <th></th>
+        <th>
+
+            @Html.ActionLink("Book A Server", "BookingData", "Home", new { @class = "my-class" })
+        </th>
     </tr>
 
     @foreach (var item in Model)
@@ -65,7 +69,7 @@ th {
                 @item.ActiveBookingID
             </td>
             <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = Model[item].ServerID }) |
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ServerID }) |
                     @Html.ActionLink("Details", "Details", new { id = item.ServerID }) |
                     @Html.ActionLink("Delete", "Delete", new { id = item.ServerID })
                 </td>
@@ -73,3 +77,6 @@ th {
     }
 
 </table>
+<p>
+    @Html.ActionLink("create new", "create", new {  })
+</p><br />

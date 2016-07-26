@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="ServerInfoModelStoreContainer" CdmEntityContainer="ServerInfoEntities">
-    <EntitySetMapping Name="BookingInfoes">
+    <EntitySetMapping Name="BookingInfo">
       <EntityTypeMapping TypeName="ServerInfoModel.BookingInfo">
         <MappingFragment StoreEntitySet="BookingInfo">
           <ScalarProperty Name="BookingID" ColumnName="BookingID" />

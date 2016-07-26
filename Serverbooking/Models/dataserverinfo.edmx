@@ -84,11 +84,11 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="ServerInfoEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="BookingInfoes" EntityType="Self.BookingInfo" />
+          <EntitySet Name="BookingInfo" EntityType="Self.BookingInfo" />
           <EntitySet Name="InfoServers" EntityType="Self.InfoServer" />
           <AssociationSet Name="FK_BookingInfo_InfoServer" Association="Self.FK_BookingInfo_InfoServer">
             <End Role="InfoServer" EntitySet="InfoServers" />
-            <End Role="BookingInfo" EntitySet="BookingInfoes" />
+            <End Role="BookingInfo" EntitySet="BookingInfo" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -97,7 +97,7 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="ServerInfoModelStoreContainer" CdmEntityContainer="ServerInfoEntities">
-          <EntitySetMapping Name="BookingInfoes">
+          <EntitySetMapping Name="BookingInfo">
             <EntityTypeMapping TypeName="ServerInfoModel.BookingInfo">
               <MappingFragment StoreEntitySet="BookingInfo">
                 <ScalarProperty Name="BookingID" ColumnName="BookingID" />

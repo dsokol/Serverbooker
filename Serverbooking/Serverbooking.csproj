@@ -1072,6 +1072,7 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Scripts\version.json" />
     <Content Include="Views\Home\Data.cshtml" />
+    <Content Include="Views\Home\BookingData.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
