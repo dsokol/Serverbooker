@@ -1,0 +1,26 @@
+﻿body {
+        padding-top: 50px;
+        padding-bottom: 20px;
+}
+
+/* Sets design for tables */
+
+    table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even){background-color: #f2f2f2}
+
+th {
+    background-color:  #4682B4;
+    color: white;
+}
+a.my-class {
+    color: white;
+}

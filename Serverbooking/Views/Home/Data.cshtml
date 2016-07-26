@@ -4,33 +4,13 @@
     Layout = "~/Views/Home/Data.cshtml";
 }*@
 
-<style>
-    table {
-    border-collapse: collapse;
-    width: 100%;
-}
-
-th, td {
-    text-align: left;
-    padding: 8px;
-}
-
-tr:nth-child(even){background-color: #f2f2f2}
-
-th {
-    background-color:  #4682B4;
-    color: white;
-}
-a.my-class {
-    color: white;
-}
-</style>
+<link href="~/Content/Tables.css" rel="stylesheet" type="text/css"/>
 <br />
 <h2>Server Information</h2>
 <table>
     <tr>
         <th>
-            ServerID
+           ServerID
         </th>
         <th>
            Status
@@ -39,18 +19,17 @@ a.my-class {
            ServerName
         </th>
         <th>
-             Environment
+           Environment
         </th>
         <th>
-          ActiveBookingID
+           ActiveBookingID
         </th>
         <th>
-
             @Html.ActionLink("Book A Server", "BookingData", "Home", new { @class = "my-class" })
         </th>
     </tr>
 
-    @foreach (var item in Model)
+    @foreach (var item in Model)   
     {
         <tr>
             <td>
@@ -69,14 +48,14 @@ a.my-class {
                 @item.ActiveBookingID
             </td>
             <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.ServerID }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.ServerID }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.ServerID })
-                </td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.ServerID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.ServerID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ServerID })
+            </td>
         </tr>
     }
 
 </table>
 <p>
-    @Html.ActionLink("create new", "create", new {  })
+    @Html.ActionLink("Create New", "create", new {  })
 </p><br />

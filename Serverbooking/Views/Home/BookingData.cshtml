@@ -5,33 +5,15 @@
     Layout = "~/Views/Home/BookingData.cshtml";
 }*@
 
+
 <h2>Booking Data</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<style>
-    table {
-        border-collapse: collapse;
-        width: 100%;
-    }
 
-    th, td {
-        text-align: left;
-        padding: 8px;
-    }
 
-    tr:nth-child(even) {
-        background-color: #f2f2f2;
-    }
-
-    th {
-        background-color: #4682B4;
-        color: white;
-    }
-</style>
-
-<table >
+<table link href="~/Content/Tables.css" rel="stylesheet" type="text/css">
     <tr>
         <th>
             BookingID
