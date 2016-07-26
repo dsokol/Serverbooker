@@ -4,16 +4,13 @@
     ViewBag.Title = "BookingData";
     Layout = "~/Views/Home/BookingData.cshtml";
 }*@
-
+<link href="~/Content/Tables.css" rel="stylesheet" type="text/css" />
 
 <h2>Booking Data</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 
 
-<table link href="~/Content/Tables.css" rel="stylesheet" type="text/css">
+<table >
     <tr>
         <th>
             BookingID
@@ -61,3 +58,7 @@
 }
 
 </table>
+<br />
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>

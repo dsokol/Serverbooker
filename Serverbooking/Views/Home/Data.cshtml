@@ -27,6 +27,7 @@
         <th>
             @Html.ActionLink("Book A Server", "BookingData", "Home", new { @class = "my-class" })
         </th>
+        <th> </th>
     </tr>
 
     @foreach (var item in Model)   
@@ -52,6 +53,7 @@
                 @Html.ActionLink("Details", "Details", new { id = item.ServerID }) |
                 @Html.ActionLink("Delete", "Delete", new { id = item.ServerID })
             </td>
+            
         </tr>
     }
 

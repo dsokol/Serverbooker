@@ -7,6 +7,7 @@ using System.Web.Mvc;
 using System.Data;
 using System.Data.SqlClient;
 using System.Configuration;
+using System.Web.DynamicData;
 
 namespace Serverbooking.Controllers
 {
@@ -51,5 +52,8 @@ namespace Serverbooking.Controllers
             var entities = new ServerInfoEntities();
             return View(entities.BookingInfo.ToList());
         }
-     }
-  }
+
+    }
+
+}
+  
