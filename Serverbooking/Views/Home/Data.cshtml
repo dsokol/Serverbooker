@@ -53,6 +53,10 @@
                 @Html.ActionLink("Details", "Details", new { id = item.ServerID }) |
                 @Html.ActionLink("Delete", "Delete", new { id = item.ServerID })
             </td>
+            <td>
+                @Html.TextBox("ServerID", Model.ServerID)
+                @Html.ValidationMessage("ServerID", "*")
+            </td>
         </tr>
     }
 
