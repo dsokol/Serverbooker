@@ -21,7 +21,7 @@ namespace Serverbooking.Controllers
         public ActionResult EditingText()
         {
             var entities = new ServerInfoEntities();
-            return View(entities.InfoServers.ToList());
+            return View(entities.InfoServers.ToList()); 
         }
     }
 }

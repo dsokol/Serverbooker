@@ -16,7 +16,10 @@ namespace Serverbooking
         string sCon = "Data Source=DNA;Persist Security Info=False;" +
      "Initial Catalog=DNA_Classified;User Id=sa;Password=;Connect Timeout=30;";
 
+
         public static DataTable DataSource { get; private set; }
+        public static int EditData { get; private set; }
+        public static int EditIndex { get; private set; }
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -46,27 +49,15 @@ namespace Serverbooking
                         // BIND DATABASE WITH THE GRIDVIEW.
                         if (dt.Rows.Count != 0)         // CHECK IF THE BOOKS TABLE HAS RECORDS.
                         {
-                           Edit.DataSource = dt;
+                            Edit.DataSource = dt;
                             DataBind();
                         }
                         else
                         {
-                            // CREATE A BLANK ROW IF THE BOOKS TABLE IS EMPTY.
 
-                            DataRow aBlankRow = dt.NewRow();
-                            dt.Rows.Add(aBlankRow);
-                           Edit.DataSource = dt;
-                            DataBind();
-
-                            // SHOW A SINGLE COLUMN WITH A MESSAGE.
-                            int col = InfoServer.Rows[0].Cells.Count;
-                            InfoServer.Rows[0].Cells.Clear();
-                            InfoServer.Rows[0].Cells.Add(new TableCell());
-                            InfoServer.Rows[0].Cells[0].ColumnSpan = col;
-                            InfoServer.Rows[0].Cells[0].Text = "Table is Empty";
                         }
                     }
-                    catch (Exception ex)
+                    catch (Exception )
                     {
                         //
                     }
@@ -89,9 +80,9 @@ namespace Serverbooking
             TextBox status = (TextBox)grdRow.Cells[0].FindControl("status");
             TextBox ServerName = (TextBox)grdRow.Cells[0].FindControl("ServerName");
 
-            if (!string.IsNullOrEmpty(tbBookName.Text.Trim()))
+            if (!string.IsNullOrEmpty(ServerID.Text.Trim()))
             {
-                if (Perform_CRUD(0, tbBookName.Text, tbCategory.Text, double.Parse(tbPrice.Text), "INSERT"))
+                if (Perform_CRUD(0, ServerID.Text, status.Text, ServerName.Text, "INSERT"))
                 {
                     BindGrid_With_Data();    // REFRESH THE GRIDVIEW.
                 }
@@ -101,7 +92,7 @@ namespace Serverbooking
         protected void Edit_PageIndexChanging(object sender, System.Web.UI.WebControls.GridViewPageEventArgs e)
         {
             // GRIDVIEW PAGING.
-            Edit.PageIndex = e.NewPageIndex;
+            Edit.EditIndex = e.NewPageIndex;
             BindGrid_With_Data();
         }
 
@@ -120,14 +111,14 @@ namespace Serverbooking
         // EXTRACT DETAILS FOR UPDATING.
         protected void Edit_RowUpdating(object sender, System.Web.UI.WebControls.GridViewUpdateEventArgs e)
         {
-            Label lblBookID = (Label)Edit.Rows[e.RowIndex].FindControl("lblServerID");
-            TextBox tbBookName = (TextBox)Edit.Rows[e.RowIndex].FindControl("tbEd_Book");
-            TextBox tbCategory = (TextBox)Edit.Rows[e.RowIndex].FindControl("tbEd_Cate");
-            TextBox tbPrice = (TextBox)Edit.Rows[e.RowIndex].FindControl("tbEd_Price");
+            Label lblServerID = (Label)Edit.Rows[e.RowIndex].FindControl("lblServerID");
+            TextBox tbServerName = (TextBox)Edit.Rows[e.RowIndex].FindControl("tbEd_Book");
+            TextBox tbstatus = (TextBox)Edit.Rows[e.RowIndex].FindControl("tbEd_Cate");
+            TextBox tbEnvironment = (TextBox)Edit.Rows[e.RowIndex].FindControl("tbEd_Price");
 
-            if (int.Parse(lblBookID.Text) != 0)
+            if (int.Parse(lblServerID.Text) != 0)
             {
-                if (Perform_CRUD(int.Parse(lblBookID.Text), tbBookName.Text, tbCategory.Text, double.Parse(tbPrice.Text), "UPDATE"))
+                if (Perform_CRUD(int.Parse(lblServerID.Text), tbServerName.Text, tbstatus.Text, tbEnvironment.Text, "UPDATE"))
                 {
                     BindGrid_With_Data();       // REFRESH THE GRIDVIEW.
                 }
@@ -147,9 +138,14 @@ namespace Serverbooking
             }
         }
 
+        private bool Perform_CRUD(int v1, string v2, string v3, int v4, string v5)
+        {
+            throw new NotImplementedException();
+        }
+
         // PRIVATE FUNCTION THAT WILL DO "CRUD" OPERATION.
         // IT TAKES FOUR PARAMETERS FOR UPDATE, DELETE AND INSERT.
-        // THE LAST PARAMETER "sOperation" IS THE TYPE OF OPERATION.
+        // THE LAST PARAMETER "sOperation" IS THE TYPE OF OPERATION.  public static int EditData { get; private set; }
 
         private bool Perform_CRUD(int iServerID, string sStatus, string sServerName, string sEnvironment, string sActiveBookingID)
         {
@@ -173,27 +169,26 @@ namespace Serverbooking
 
                             break;
                         case "UPDATE":
-                            cmd.CommandText = "UPDATE dbo.Books SET BookName = @BookName, Category = @Category, " + "Price = @Price WHERE BookID = @BookID";
+                            cmd.CommandText = "UPDATE dbo.InfoServer SET ServerID = @ServerID, Status= @Status,  " + "Price = @Price WHERE BookID = @BookID";
 
                             cmd.Parameters.AddWithValue("@Status", sStatus.Trim());
                             cmd.Parameters.AddWithValue("@ServerName", sServerName.Trim());
                             cmd.Parameters.AddWithValue("@Environment", sEnvironment);
-                            cmd.Parameters.AddWithValue("@ServerID", ServerID);
+                            cmd.Parameters.AddWithValue("@ServerID", iServerID);
 
                             break;
                         case "DELETE":
                             cmd.CommandText = "DELETE FROM dbo.InfoServer WHERE ServerID= @ServerID";
-                            cmd.Parameters.AddWithValue("@ServerID", ServerID);
+                            cmd.Parameters.AddWithValue("@ServerID", iServerID);
                             break;
                     }
 
                     cmd.ExecuteNonQuery();
-                    Edit.EditIndex = -1;
+                    Edit.EditData = -1;
                 }
             }
 
             return true;
         }
     }
-}
 }
