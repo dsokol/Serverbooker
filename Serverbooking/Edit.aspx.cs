@@ -6,8 +6,8 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
-
-
+using Serverbooking.Models;
+using System.Web.Services.Description;
 
 namespace Serverbooking
 {
@@ -15,6 +15,8 @@ namespace Serverbooking
     {
         string sCon = "Data Source=DNA;Persist Security Info=False;" +
      "Initial Catalog=DNA_Classified;User Id=sa;Password=;Connect Timeout=30;";
+
+        public static DataTable DataSource { get; private set; }
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -45,7 +47,7 @@ namespace Serverbooking
                         if (dt.Rows.Count != 0)         // CHECK IF THE BOOKS TABLE HAS RECORDS.
                         {
                            Edit.DataSource = dt;
-                            GridView1.DataBind();
+                            DataBind();
                         }
                         else
                         {
@@ -53,15 +55,15 @@ namespace Serverbooking
 
                             DataRow aBlankRow = dt.NewRow();
                             dt.Rows.Add(aBlankRow);
-                            GridView1.DataSource = dt;
-                            GridView1.DataBind();
+                           Edit.DataSource = dt;
+                            DataBind();
 
                             // SHOW A SINGLE COLUMN WITH A MESSAGE.
-                            int col = GridView1.Rows[0].Cells.Count;
-                            GridView1.Rows[0].Cells.Clear();
-                            GridView1.Rows[0].Cells.Add(new TableCell());
-                            GridView1.Rows[0].Cells[0].ColumnSpan = col;
-                            GridView1.Rows[0].Cells[0].Text = "Table is Empty";
+                            int col = InfoServer.Rows[0].Cells.Count;
+                            InfoServer.Rows[0].Cells.Clear();
+                            InfoServer.Rows[0].Cells.Add(new TableCell());
+                            InfoServer.Rows[0].Cells[0].ColumnSpan = col;
+                            InfoServer.Rows[0].Cells[0].Text = "Table is Empty";
                         }
                     }
                     catch (Exception ex)
@@ -75,7 +77,6 @@ namespace Serverbooking
                 }
             }
         }
-
         // INSERT A NEW RECORD.
         protected void InsertRecord(object sender, EventArgs e)
         {
@@ -84,9 +85,9 @@ namespace Serverbooking
             GridViewRow grdRow = (GridViewRow)bt.Parent.Parent;
 
             // NOW GET VALUES FROM FIELDS FROM THE ACTIVE ROW.
-            TextBox tbBookName = (TextBox)grdRow.Cells[0].FindControl("tbBookName");
-            TextBox tbCategory = (TextBox)grdRow.Cells[0].FindControl("tbCategory");
-            TextBox tbPrice = (TextBox)grdRow.Cells[0].FindControl("tbPrice");
+            TextBox ServerID = (TextBox)grdRow.Cells[0].FindControl("ServerID");
+            TextBox status = (TextBox)grdRow.Cells[0].FindControl("status");
+            TextBox ServerName = (TextBox)grdRow.Cells[0].FindControl("ServerName");
 
             if (!string.IsNullOrEmpty(tbBookName.Text.Trim()))
             {
@@ -97,7 +98,7 @@ namespace Serverbooking
             }
         }
 
-        protected void GridView1_PageIndexChanging(object sender, System.Web.UI.WebControls.GridViewPageEventArgs e)
+        protected void Edit_PageIndexChanging(object sender, System.Web.UI.WebControls.GridViewPageEventArgs e)
         {
             // GRIDVIEW PAGING.
             Edit.PageIndex = e.NewPageIndex;
@@ -106,23 +107,23 @@ namespace Serverbooking
 
         protected void GridView_RowEditing(object sender, GridViewEditEventArgs e)
         {
-            GridView1.EditIndex = e.NewEditIndex;
+            Edit.EditIndex = e.NewEditIndex;
             BindGrid_With_Data();
         }
 
         protected void GridView_RowCancelingEdit(object sender, System.Web.UI.WebControls.GridViewCancelEditEventArgs e)
         {
-            GridView1.EditIndex = -1;
+            Edit.EditIndex = -1;
             BindGrid_With_Data();
         }
 
         // EXTRACT DETAILS FOR UPDATING.
-        protected void GridView1_RowUpdating(object sender, System.Web.UI.WebControls.GridViewUpdateEventArgs e)
+        protected void Edit_RowUpdating(object sender, System.Web.UI.WebControls.GridViewUpdateEventArgs e)
         {
-            Label lblBookID = (Label)GridView1.Rows[e.RowIndex].FindControl("lblBookID");
-            TextBox tbBookName = (TextBox)GridView1.Rows[e.RowIndex].FindControl("tbEd_Book");
-            TextBox tbCategory = (TextBox)GridView1.Rows[e.RowIndex].FindControl("tbEd_Cate");
-            TextBox tbPrice = (TextBox)GridView1.Rows[e.RowIndex].FindControl("tbEd_Price");
+            Label lblBookID = (Label)Edit.Rows[e.RowIndex].FindControl("lblServerID");
+            TextBox tbBookName = (TextBox)Edit.Rows[e.RowIndex].FindControl("tbEd_Book");
+            TextBox tbCategory = (TextBox)Edit.Rows[e.RowIndex].FindControl("tbEd_Cate");
+            TextBox tbPrice = (TextBox)Edit.Rows[e.RowIndex].FindControl("tbEd_Price");
 
             if (int.Parse(lblBookID.Text) != 0)
             {
@@ -133,9 +134,9 @@ namespace Serverbooking
             }
         }
 
-        protected void GridView1_RowDeleting(object sender, System.Web.UI.WebControls.GridViewDeleteEventArgs e)
+        protected void Edit_RowDeleting(object sender, System.Web.UI.WebControls.GridViewDeleteEventArgs e)
         {
-            Label lblBookID = (Label)GridView1.Rows[e.RowIndex].FindControl("lblBookID");
+            Label lblBookID = (Label)Edit.Rows[e.RowIndex].FindControl("lblServerID");
 
             if (int.Parse(lblBookID.Text) != 0)
             {
@@ -150,44 +151,44 @@ namespace Serverbooking
         // IT TAKES FOUR PARAMETERS FOR UPDATE, DELETE AND INSERT.
         // THE LAST PARAMETER "sOperation" IS THE TYPE OF OPERATION.
 
-        private bool Perform_CRUD(int iBookID, string sBookName, string sCategory, double dPrice, string sOperation)
+        private bool Perform_CRUD(int iServerID, string sStatus, string sServerName, string sEnvironment, string sActiveBookingID)
         {
 
             using (SqlConnection con = new SqlConnection(sCon))
             {
-                using (SqlCommand cmd = new SqlCommand("SELECT *FROM dbo.Books"))
+                using (SqlCommand cmd = new SqlCommand("SELECT *FROM dbo.InfoServer"))
                 {
 
                     cmd.Connection = con;
                     con.Open();
 
-                    switch (sOperation)
+                    switch (Operation)
                     {
                         case "INSERT":
-                            cmd.CommandText = "INSERT INTO dbo.Books (BookName, Category, Price) " + "VALUES(@BookName, @Category, @Price)";
+                            cmd.CommandText = "INSERT INTO dbo.InfoServer (Status, ServerName, Environment) " + "VALUES(@Status, @ServerName, @Environment)";
 
-                            cmd.Parameters.AddWithValue("@BookName", sBookName.Trim());
-                            cmd.Parameters.AddWithValue("@Category", sCategory.Trim());
-                            cmd.Parameters.AddWithValue("@Price", dPrice);
+                            cmd.Parameters.AddWithValue("@Satus", sStatus.Trim());
+                            cmd.Parameters.AddWithValue("@ServerName", sServerName.Trim());
+                            cmd.Parameters.AddWithValue("@Environment", sEnvironment);
 
                             break;
                         case "UPDATE":
                             cmd.CommandText = "UPDATE dbo.Books SET BookName = @BookName, Category = @Category, " + "Price = @Price WHERE BookID = @BookID";
 
-                            cmd.Parameters.AddWithValue("@BookName", sBookName.Trim());
-                            cmd.Parameters.AddWithValue("@Category", sCategory.Trim());
-                            cmd.Parameters.AddWithValue("@Price", dPrice);
-                            cmd.Parameters.AddWithValue("@BookID", iBookID);
+                            cmd.Parameters.AddWithValue("@Status", sStatus.Trim());
+                            cmd.Parameters.AddWithValue("@ServerName", sServerName.Trim());
+                            cmd.Parameters.AddWithValue("@Environment", sEnvironment);
+                            cmd.Parameters.AddWithValue("@ServerID", ServerID);
 
                             break;
                         case "DELETE":
-                            cmd.CommandText = "DELETE FROM dbo.Books WHERE BookID = @BookID";
-                            cmd.Parameters.AddWithValue("@BookID", iBookID);
+                            cmd.CommandText = "DELETE FROM dbo.InfoServer WHERE ServerID= @ServerID";
+                            cmd.Parameters.AddWithValue("@ServerID", ServerID);
                             break;
                     }
 
                     cmd.ExecuteNonQuery();
-                    GridView1.EditIndex = -1;
+                    Edit.EditIndex = -1;
                 }
             }
 
