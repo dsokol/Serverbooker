@@ -46,8 +46,8 @@ namespace Serverbooking
                         DataTable dt = new DataTable();
                         sda.Fill(dt);
 
-                        // BIND DATABASE WITH THE GRIDVIEW.
-                        if (dt.Rows.Count != 0)         // CHECK IF THE BOOKS TABLE HAS RECORDS.
+                      
+                        if (dt.Rows.Count != 0)     
                         {
                             Edit.DataSource = dt;
                             DataBind();
@@ -59,7 +59,7 @@ namespace Serverbooking
                     }
                     catch (Exception )
                     {
-                        //
+                        
                     }
                     finally
                     {
@@ -68,14 +68,14 @@ namespace Serverbooking
                 }
             }
         }
-        // INSERT A NEW RECORD.
+        
         protected void InsertRecord(object sender, EventArgs e)
         {
-            // GET THE ACTIVE GRIDVIEW ROW.
+            
             Button bt = (Button)sender;
             GridViewRow grdRow = (GridViewRow)bt.Parent.Parent;
 
-            // NOW GET VALUES FROM FIELDS FROM THE ACTIVE ROW.
+            
             TextBox ServerID = (TextBox)grdRow.Cells[0].FindControl("ServerID");
             TextBox status = (TextBox)grdRow.Cells[0].FindControl("status");
             TextBox ServerName = (TextBox)grdRow.Cells[0].FindControl("ServerName");
@@ -84,14 +84,19 @@ namespace Serverbooking
             {
                 if (Perform_CRUD(0, ServerID.Text, status.Text, ServerName.Text, "INSERT"))
                 {
-                    BindGrid_With_Data();    // REFRESH THE GRIDVIEW.
+                    BindGrid_With_Data(); 
                 }
             }
         }
 
+        private bool Perform_CRUD(int v1, string text1, string text2, string text3, string v2)
+        {
+            throw new NotImplementedException();
+        }
+
         protected void Edit_PageIndexChanging(object sender, System.Web.UI.WebControls.GridViewPageEventArgs e)
         {
-            // GRIDVIEW PAGING.
+           
             Edit.EditIndex = e.NewPageIndex;
             BindGrid_With_Data();
         }
@@ -108,14 +113,55 @@ namespace Serverbooking
             BindGrid_With_Data();
         }
 
-        // EXTRACT DETAILS FOR UPDATING.
-
+       
         private bool Perform_CRUD(int v1, string v2, string v3, int v4, string v5)
         {
             throw new NotImplementedException();
         }
 
 
-       
+        private bool Perform_CRUD(int iServerID, string sStatus, string sServerName, string sEnvironment, string sActiveBookingID, string sOperation)
+        {
+
+            using (SqlConnection con = new SqlConnection(sCon))
+            {
+                using (SqlCommand cmd = new SqlCommand("SELECT *FROM dbo.InfoServer"))
+                {
+
+                    cmd.Connection = con;
+                    con.Open();
+
+                    switch (sOperation)
+                    {
+                        case "INSERT":
+                            cmd.CommandText = "INSERT INTO dbo.InfoServer (Status, ServerName, Environment) " + "VALUES(@Status, @ServerName, @Environment)";
+
+                            cmd.Parameters.AddWithValue("@Satus", sStatus.Trim());
+                            cmd.Parameters.AddWithValue("@ServerName", sServerName.Trim());
+                            cmd.Parameters.AddWithValue("@Environment", sEnvironment);
+
+                            break;
+                        case "UPDATE":
+                            cmd.CommandText = "UPDATE dbo.InfoServer SET ServerID = @ServerID, Status= @Status,  " + "Price = @Price WHERE BookID = @BookID";
+
+                            cmd.Parameters.AddWithValue("@Status", sStatus.Trim());
+                            cmd.Parameters.AddWithValue("@ServerName", sServerName.Trim());
+                            cmd.Parameters.AddWithValue("@Environment", sEnvironment);
+                            cmd.Parameters.AddWithValue("@ServerID", iServerID);
+
+                            break;
+                        case "DELETE":
+                            cmd.CommandText = "DELETE FROM dbo.InfoServer WHERE ServerID= @ServerID";
+                            cmd.Parameters.AddWithValue("@ServerID", iServerID);
+                            break;
+                    }
+
+                    cmd.ExecuteNonQuery();
+                    Edit.EditData = -1;
+                }
+            }
+
+            return true;
+        }
     }
 }
