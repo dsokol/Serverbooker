@@ -109,86 +109,13 @@ namespace Serverbooking
         }
 
         // EXTRACT DETAILS FOR UPDATING.
-        protected void Edit_RowUpdating(object sender, System.Web.UI.WebControls.GridViewUpdateEventArgs e)
-        {
-            Label lblServerID = (Label)Edit.Rows[e.RowIndex].FindControl("lblServerID");
-            TextBox tbServerName = (TextBox)Edit.Rows[e.RowIndex].FindControl("tbEd_Book");
-            TextBox tbstatus = (TextBox)Edit.Rows[e.RowIndex].FindControl("tbEd_Cate");
-            TextBox tbEnvironment = (TextBox)Edit.Rows[e.RowIndex].FindControl("tbEd_Price");
-
-            if (int.Parse(lblServerID.Text) != 0)
-            {
-                if (Perform_CRUD(int.Parse(lblServerID.Text), tbServerName.Text, tbstatus.Text, tbEnvironment.Text, "UPDATE"))
-                {
-                    BindGrid_With_Data();       // REFRESH THE GRIDVIEW.
-                }
-            }
-        }
-
-        protected void Edit_RowDeleting(object sender, System.Web.UI.WebControls.GridViewDeleteEventArgs e)
-        {
-            Label lblBookID = (Label)Edit.Rows[e.RowIndex].FindControl("lblServerID");
-
-            if (int.Parse(lblBookID.Text) != 0)
-            {
-                if (Perform_CRUD(int.Parse(lblBookID.Text), "", "", 0, "DELETE"))
-                {
-                    BindGrid_With_Data();   // REFRESH THE GRIDVIEW.
-                }
-            }
-        }
 
         private bool Perform_CRUD(int v1, string v2, string v3, int v4, string v5)
         {
             throw new NotImplementedException();
         }
 
-        // PRIVATE FUNCTION THAT WILL DO "CRUD" OPERATION.
-        // IT TAKES FOUR PARAMETERS FOR UPDATE, DELETE AND INSERT.
-        // THE LAST PARAMETER "sOperation" IS THE TYPE OF OPERATION.  public static int EditData { get; private set; }
 
-        private bool Perform_CRUD(int iServerID, string sStatus, string sServerName, string sEnvironment, string sActiveBookingID)
-        {
-
-            using (SqlConnection con = new SqlConnection(sCon))
-            {
-                using (SqlCommand cmd = new SqlCommand("SELECT *FROM dbo.InfoServer"))
-                {
-
-                    cmd.Connection = con;
-                    con.Open();
-
-                    switch (Operation)
-                    {
-                        case "INSERT":
-                            cmd.CommandText = "INSERT INTO dbo.InfoServer (Status, ServerName, Environment) " + "VALUES(@Status, @ServerName, @Environment)";
-
-                            cmd.Parameters.AddWithValue("@Satus", sStatus.Trim());
-                            cmd.Parameters.AddWithValue("@ServerName", sServerName.Trim());
-                            cmd.Parameters.AddWithValue("@Environment", sEnvironment);
-
-                            break;
-                        case "UPDATE":
-                            cmd.CommandText = "UPDATE dbo.InfoServer SET ServerID = @ServerID, Status= @Status,  " + "Price = @Price WHERE BookID = @BookID";
-
-                            cmd.Parameters.AddWithValue("@Status", sStatus.Trim());
-                            cmd.Parameters.AddWithValue("@ServerName", sServerName.Trim());
-                            cmd.Parameters.AddWithValue("@Environment", sEnvironment);
-                            cmd.Parameters.AddWithValue("@ServerID", iServerID);
-
-                            break;
-                        case "DELETE":
-                            cmd.CommandText = "DELETE FROM dbo.InfoServer WHERE ServerID= @ServerID";
-                            cmd.Parameters.AddWithValue("@ServerID", iServerID);
-                            break;
-                    }
-
-                    cmd.ExecuteNonQuery();
-                    Edit.EditData = -1;
-                }
-            }
-
-            return true;
-        }
+       
     }
 }
