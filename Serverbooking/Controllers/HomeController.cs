@@ -8,6 +8,8 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Configuration;
 using System.Web.DynamicData;
+using System.Data.Entity;
+using System.Net;
 
 namespace Serverbooking.Controllers
 {
@@ -52,11 +54,37 @@ namespace Serverbooking.Controllers
             var entities = new ServerInfoEntities();
             return View(entities.BookingInfo.ToList());
         }
-        
-        public ActionResult Edit(int id)
+
+        public ActionResult Edit(int? ServerID = 0)
         {
-                ServerInfoEntities server = ServerInfoEntities.ServerInfo(id);
-                return View(server);
+          
+            if (ServerID == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            ServerInfo serverinfo = db.ServerInfo.Find(ServerID);
+            if (serverinfo == null)
+            {
+                return HttpNotFound();
+            }
+            return View(serverinfo);
+        }
+            [HttpPost]
+            [ValidateAntiForgeryToken]
+        public ActionResult Edit([Bind(Include = "ServerID , ServerName, ActiveBookingID")]ServerInfo serverinfo)
+        {
+            try
+            {
+              if (ModelState.IsValid)
+                {
+                    db.Entry(serverinfo).State = EntityState.Modified;
+                    db.SaveChanges();
+                }
+            }
+            catch (DataException)
+            {
+                ModelState.AddModelError("", "Unable to save changes. Try again, and if the proplem persists see the system administrator.");
+            }
         }
     }
 

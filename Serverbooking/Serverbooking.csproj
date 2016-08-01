@@ -1083,6 +1083,7 @@
     <Content Include="Scripts\version.json" />
     <Content Include="Views\Home\Data.cshtml" />
     <Content Include="Views\Home\BookingData.cshtml" />
+    <Content Include="Views\Home\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

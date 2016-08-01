@@ -24,4 +24,5 @@ namespace Serverbooking.Controllers
             return View(entities.InfoServers.ToList()); 
         }
     }
+
 }
