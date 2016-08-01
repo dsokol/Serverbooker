@@ -7,20 +7,9 @@
     <title>Server Information</title>
 </head>
 <body>
-    <form id="form1" runat="server">
-    <div>
-<Columns>
-    <asp:Edit>
-        
-        <asp:LinkButton Runat="server" 
-            OnClientClick="return confirm('Are you sure you?');" 
-            CommandName="Delete">Delete</asp:LinkButton>
-        
-    </asp:Edit>
-</Columns>
-          </div>
+
 
                 
-    </form>
+
 </body>
 </html>
