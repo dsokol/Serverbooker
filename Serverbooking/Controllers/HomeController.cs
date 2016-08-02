@@ -64,12 +64,32 @@ namespace Serverbooking.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             ServerInfo serverinfo = Models.ServerInfo.Find(ServerID);
+
             if (serverinfo == null)
             {
                 return HttpNotFound();
             }
             return View(serverinfo);
         }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create([Bind(Include = "ServerID, Status, ServerName, Environment, ActiveBookingID")] ServerInfo serverinfo)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    InfoServer.Add(Server);
+                    Models.SaveChanges();
+                    return RedirectToAction("Data");
+                }
+            }
+            catch (DataException)
+            {
+                ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see the system administrator.");
+            }
+        }
+       
 
     }
 }

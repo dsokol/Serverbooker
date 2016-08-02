@@ -1076,6 +1076,7 @@
     <Content Include="Views\Home\Data.cshtml" />
     <Content Include="Views\Home\BookingData.cshtml" />
     <Content Include="Views\Home\Edit.cshtml" />
+    <Content Include="Views\Home\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

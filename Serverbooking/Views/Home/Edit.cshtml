@@ -50,25 +50,7 @@
             <dt>
                 @Html.DisplayNameFor(model => model.ActiveBookingID)
             </dt>
-            <dd>
-                <table>
-                    <tr>
-                        <th>ServerID</th>
-                        <th>Status</th>
-                    </tr>
-                    @foreach (var item in Model.Environment)
-                    {
-                        <tr>
-                            <td>
-                                @Html.DisplayFor(model => model.ServerID)
-                            </td>
-                            <td>
-                                @Html.DisplayNameFor(model => model.Environment)
-                            </td>
-                        </tr>
-                    }
-                </table>
-            </dd>
+
         </dl>
     </div>
     <div>

@@ -11,7 +11,8 @@ namespace Serverbooking.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.Web;
+
     public partial class InfoServer
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -28,5 +29,10 @@ namespace Serverbooking.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BookingInfo> BookingInfo { get; set; }
+
+        internal static void Add(HttpServerUtilityBase server)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
