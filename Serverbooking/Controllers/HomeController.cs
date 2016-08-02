@@ -15,6 +15,7 @@ namespace Serverbooking.Controllers
 {
     public class HomeController : Controller
     {
+
         public ActionResult Index()
         {
             ViewBag.Message = "Index";
@@ -28,7 +29,7 @@ namespace Serverbooking.Controllers
 
             return View();
         }
-        
+
         public ActionResult Contact()
         {
             ViewBag.Message = "Contact page.";
@@ -57,36 +58,22 @@ namespace Serverbooking.Controllers
 
         public ActionResult Edit(int? ServerID = 0)
         {
-          
+
             if (ServerID == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ServerInfo serverinfo = db.ServerInfo.Find(ServerID);
+            ServerInfo serverinfo = Models.ServerInfo.Find(ServerID);
             if (serverinfo == null)
             {
                 return HttpNotFound();
             }
             return View(serverinfo);
         }
-            [HttpPost]
-            [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ServerID , ServerName, ActiveBookingID")]ServerInfo serverinfo)
-        {
-            try
-            {
-              if (ModelState.IsValid)
-                {
-                    db.Entry(serverinfo).State = EntityState.Modified;
-                    db.SaveChanges();
-                }
-            }
-            catch (DataException)
-            {
-                ModelState.AddModelError("", "Unable to save changes. Try again, and if the proplem persists see the system administrator.");
-            }
-        }
+        
     }
-
 }
-  
+
+    
+    
+

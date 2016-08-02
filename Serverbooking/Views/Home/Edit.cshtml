@@ -56,14 +56,14 @@
                         <th>ServerID</th>
                         <th>Status</th>
                     </tr>
-                    @foreach (var item in Model.ServerName)
+                    @foreach (var item in Model.Environment)
                     {
                         <tr>
                             <td>
-                                @Html.DisplayFor(modelItem => item.ServerID)
+                                @Html.DisplayFor(model => model.ServerID)
                             </td>
                             <td>
-                                @Html.DisplayNameFor(modelItem => item.Status)
+                                @Html.DisplayNameFor(model => model.Environment)
                             </td>
                         </tr>
                     }
@@ -77,3 +77,4 @@
     </p>
 </body>
 </html>
+ 
