@@ -6,6 +6,26 @@
 
 <!DOCTYPE html>
 
+@{ 
+    var ServerID = "";
+    var Status = "";
+    var ServerName = "";
+    var Environment = "";
+    var ActiveBookingID = "";
+
+    if (IsPost)
+    {
+        ServerID = Request.Form["ServerID"];
+        Status = Request.Form[Status];
+        ServerName = Request.Form[ServerName];
+        Environment = Request.Form[Environment];
+        ActiveBookingID = Request.Form[ActiveBookingID];
+        var db = Database.Open("ServerInfo");
+        var insertCommand = "INSERT INTO InfoServer (ServerID, Status, ServerName, Environment, ActiveBookingID) VALUES(@0, @1, @2, @3, @4, @5)";
+        db.Execute(insertCommand, ServerID, Status, ServerName, Environment, ActiveBookingID);
+        Response.Redirect("~/Views/Home");
+    }
+}
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
