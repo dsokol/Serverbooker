@@ -71,26 +71,35 @@ namespace Serverbooking.Controllers
             }
             return View(serverinfo);
         }
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ServerID, Status, ServerName, Environment, ActiveBookingID")] ServerInfo serverinfo)
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult Create([Bind(Include = "ServerID, Status, ServerName, Environment, ActiveBookingID")] ServerInfo serverinfo)
+        //{
+        //    try
+        //    {
+        //        if (ModelState.IsValid)
+        //        {
+        //            InfoServer.Add(Server);
+        //            SaveChanges();
+        //            return RedirectToAction("Data");
+        //        }
+        //    }
+        //    catch (DataException)
+        //    {
+        //        ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see the system administrator.");
+        //    }
+        //}
+        public ActionResult Create()
         {
-            try
-            {
-                if (ModelState.IsValid)
-                {
-                    InfoServer.Add(Server);
-                    Models.SaveChanges();
-                    return RedirectToAction("Data");
-                }
-            }
-            catch (DataException)
-            {
-                ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see the system administrator.");
-            }
-        }
-       
+            ViewBag.Message = "Create";
 
+            return View();
+        }
+
+        private void SaveChanges()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
 
