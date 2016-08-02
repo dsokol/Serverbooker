@@ -70,7 +70,7 @@ namespace Serverbooking.Controllers
             }
             return View(serverinfo);
         }
-        
+
     }
 }
 

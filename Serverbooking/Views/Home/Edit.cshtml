@@ -1,4 +1,4 @@
-﻿@model Serverbooking.Models.InfoServer
+﻿@model Serverbooking.Models.ServerInfo
 
 @{
     Layout = null;
@@ -70,6 +70,13 @@
                 </table>
             </dd>
         </dl>
+    </div>
+    <div>
+        @Html.LabelFor(model => model.ServerID, new { @class = "conrtrol-label col-md-2"})
+        <div class="col-md-2">
+            @Html.EditorFor(model => model.ServerID)
+            @Html.ValidationMessageFor(model => model.ServerID)
+        </div>
     </div>
     <p>
         @Html.ActionLink("Edit", "Edit", new { id = Model.ServerID }) |
