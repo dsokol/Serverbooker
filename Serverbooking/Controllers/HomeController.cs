@@ -76,6 +76,8 @@ namespace Serverbooking.Controllers
         [HttpPost, ActionName("Edit")]
         [ValidateAntiForgeryToken]
 
+        //public ActionResult Edit;
+
         public ActionResult Create([Bind(Include = "ServerID, Status, ServerName, Environment, ActiveBookingID")] ServerInfo serverinfo)
         {
             try
