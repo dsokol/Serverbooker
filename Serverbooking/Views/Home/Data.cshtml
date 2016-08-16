@@ -1,66 +1,126 @@
-﻿@*@model IEnumerable<Serverbooking.Models.InfoServer>
-@{
-    ViewBag.Title = "Data";
-    Layout = "~/Views/Home/Data.cshtml";
-}*@
+﻿@*@model IEnumerable<Serverbooking.Models.InfoServer>*@
+    @*@{
+        ViewBag.Title = "Data";
+        Layout = "~/Views/Home/Data.cshtml";
+        
+    }*@
 
 <link href="~/Content/Tables.css" rel="stylesheet" type="text/css"/>
 <br />
 <h2>Server Information</h2>
-<table>
-    <tr>
-        <th>
-           ServerID
-        </th>
-        <th>
-           Status
-        </th>
-        <th>
-           ServerName
-        </th>
-        <th>
-           Environment
-        </th>
-        <th>
-           ActiveBookingID
-        </th>
-        <th>
-            @Html.ActionLink("Book A Server", "BookingData", "Home", new { @class = "my-class" })
-        </th>
-        <th> </th>
-    </tr>
 
-    @foreach (var item in Model)   
-    {
-        <tr>
-            <td>
-                @item.ServerID
-            </td>
-            <td>
-                @item.Status
-            </td>
-            <td>
-                @item.ServerName
-            </td>
-            <td>
-                @item.Environment
-            </td>
-            <td>
-                @item.ActiveBookingID 
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.ServerID }) |
-                @Html.ActionLink("Details", "Details", new { id = item.ServerID }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.ServerID })
-            </td>
-            <td>
-                @*@Html.TextBox("ServerID", Model.ServerID)
-                @Html.ValidationMessage("ServerID", "*")*@
-            </td>
-        </tr>
-    }
 
-</table>
-<p>
-    @Html.ActionLink("Create New", "Create", new {  })
-</p><br />
+
+<link href="~/Content/Tabs.css" rel="stylesheet" type="text/css" />
+<body>
+
+
+
+    <ul class="tab">
+        <li><a href="#" class="tablinks" onclick="openServer(event, 'RMS')">RMS</a></li>
+        <li><a href="#" class="tablinks" onclick="openServer(event, 'AIR')">AIR</a></li>
+        <li><a href="#" class="tablinks" onclick="openServer(event, 'DQT')">DQT</a></li>
+        <li><a href="#" class="tablinks" onclick="openServer(event, 'TMROW')">TMROW</a></li>
+        <li><a href="#" class="tablinks" onclick="openServer(event, 'CAT_Workstation')">CAT Workstation</a></li>
+    </ul>
+
+    <div id="RMS" class="tabcontent">
+        <h3>RMS</h3>
+        <p>
+            <table>
+                <tr>
+                    <th>
+                        ServerID
+                    </th>
+                    <th>
+                        Status
+                    </th>
+                    <th>
+                        ServerName
+                    </th>
+                    <th>
+                        Environment
+                    </th>
+                    <th>
+                        ActiveBookingID
+                    </th>
+                    <th>
+                        @Html.ActionLink("Book A Server", "BookingData", "Home", new { @class = "my-class" })
+                    </th>
+                    <th> </th>
+                </tr>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @item.ServerID
+                        </td>
+                        <td>
+                            @item.Status
+                        </td>
+                        <td>
+                            @item.ServerName
+                        </td>
+                        <td>
+                            @item.Environment
+                        </td>
+                        <td>
+                            @item.ActiveBookingID
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { id = item.ServerID }) |
+                            @Html.ActionLink("Details", "Details", new { id = item.ServerID }) |
+                            @Html.ActionLink("Delete", "Delete", new { id = item.ServerID })
+                        </td>
+                        <td>
+                            @*@Html.TextBox("ServerID", Model.ServerID)
+                                @Html.ValidationMessage("ServerID", "*")*@
+                        </td>
+                    </tr>
+                }
+
+            </table>
+        <p>
+            @Html.ActionLink("Create New", "Create", new { })
+        </p><br />
+    </div>
+
+    <div id="AIR" class="tabcontent">
+        <h3>AIR</h3>
+
+    </div>
+
+    <div id="DQT" class="tabcontent">
+        <h3>DQT</h3>
+
+    </div>
+
+    <div id="TMROW" class="tabcontent">
+        <h3>TMROW</h3>
+
+    </div>
+
+    <div id="CAT_Workstation" class="tabcontent">
+        <h3>CAT Workstation</h3>
+
+    </div>
+
+
+    <script>
+        function openServer(evt, serverName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            document.getElementById(serverName).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+    </script>
+
+</body>

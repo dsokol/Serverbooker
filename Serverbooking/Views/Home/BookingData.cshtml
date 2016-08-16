@@ -4,61 +4,121 @@
     ViewBag.Title = "BookingData";
     Layout = "~/Views/Home/BookingData.cshtml";
 }*@
+
+
 <link href="~/Content/Tables.css" rel="stylesheet" type="text/css" />
+<link href="~/Content/Tabs.css" rel="stylesheet" type="text/css" />
 
-<h2>Booking Data</h2>
+<h2>Booking Information</h2>
+
+
+<body>
 
 
 
-<table >
-    <tr>
-        <th>
-            BookingID
-        </th>
-        <th>
-            ServerID
-        </th>
-        <th>
-           UserID
-        </th>
-        <th>
-            Check In Time
-        </th>
-        <th>
-            Check Out Time
-        </th>
+    <ul class="tab">
+        <li><a href="#" class="tablinks" onclick="openServer(event, 'RMS')">RMS</a></li>
+        <li><a href="#" class="tablinks" onclick="openServer(event, 'AIR')">AIR</a></li>
+        <li><a href="#" class="tablinks" onclick="openServer(event, 'DQT')">DQT</a></li>
+        <li><a href="#" class="tablinks" onclick="openServer(event, 'TMROW')">TMROW</a></li>
+        <li><a href="#" class="tablinks" onclick="openServer(event, 'CAT_Workstation')">CAT Workstation</a></li>
+    </ul>
 
-        <th></th>
-    </tr>
+    <div id="RMS" class="tabcontent">
+        <h3>RMS</h3>
+        <p>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @item.BookingID
-        </td>
-        <td>
-            @item.ServerID
-        </td>
-        <td>
-            @item.UserID
-        </td>
-        <td>
-            @item.CheckInTime
-        </td>
-        <td>
-            @item.CheckOutTime
-        </td>
 
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.BookingID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.BookingID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.BookingID })
-        </td>
-    </tr>
-}
+            <table>
+                <tr>
+                    <th>
+                        BookingID
+                    </th>
+                    <th>
+                        ServerID
+                    </th>
+                    <th>
+                        UserID
+                    </th>
+                    <th>
+                        Check In Time
+                    </th>
+                    <th>
+                        Check Out Time
+                    </th>
 
-</table>
-<br />
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+                    <th></th>
+                </tr>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @item.BookingID
+                        </td>
+                        <td>
+                            @item.ServerID
+                        </td>
+                        <td>
+                            @item.UserID
+                        </td>
+                        <td>
+                            @item.CheckInTime
+                        </td>
+                        <td>
+                            @item.CheckOutTime
+                        </td>
+
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { id = item.BookingID }) |
+                            @Html.ActionLink("Details", "Details", new { id = item.BookingID }) |
+                            @Html.ActionLink("Delete", "Delete", new { id = item.BookingID })
+                        </td>
+                    </tr>
+                }
+
+            </table>
+            <br />
+        <p>
+            @Html.ActionLink("Create New", "Create")
+        </p>
+    </div>
+
+    <div id="AIR" class="tabcontent">
+        <h3>AIR</h3>
+
+    </div>
+
+    <div id="DQT" class="tabcontent">
+        <h3>DQT</h3>
+
+    </div>
+
+    <div id="TMROW" class="tabcontent">
+        <h3>TMROW</h3>
+
+    </div>
+
+    <div id="CAT_Workstation" class="tabcontent">
+        <h3>CAT Workstation</h3>
+
+    </div>
+
+
+    <script>
+        function openServer(evt, serverName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            document.getElementById(serverName).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+    </script>
+
+</body>
