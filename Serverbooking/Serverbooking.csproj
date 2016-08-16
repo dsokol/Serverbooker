@@ -204,6 +204,8 @@
     <Compile Include="Models\BookingInfo.cs">
       <DependentUpon>dataserverinfo.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\BookingInfoesCRUDController.cs" />
+    <Compile Include="Models\ServerInfoCRUDController.cs" />
     <Compile Include="Models\dataserverinfo.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -1074,10 +1076,16 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Scripts\version.json" />
-    <Content Include="Views\Home\Data.cshtml" />
-    <Content Include="Views\Home\BookingData.cshtml" />
-    <Content Include="Views\Home\Edit.cshtml" />
-    <Content Include="Views\Home\Create.cshtml" />
+    <Content Include="Views\ServerInfoCRUD\Create.cshtml" />
+    <Content Include="Views\ServerInfoCRUD\Delete.cshtml" />
+    <Content Include="Views\ServerInfoCRUD\Details.cshtml" />
+    <Content Include="Views\ServerInfoCRUD\Edit.cshtml" />
+    <Content Include="Views\ServerInfoCRUD\ServerData.cshtml" />
+    <Content Include="Views\BookingInfoesCRUD\Create.cshtml" />
+    <Content Include="Views\BookingInfoesCRUD\Delete.cshtml" />
+    <Content Include="Views\BookingInfoesCRUD\Details.cshtml" />
+    <Content Include="Views\BookingInfoesCRUD\Edit.cshtml" />
+    <Content Include="Views\BookingInfoesCRUD\BookingData.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
