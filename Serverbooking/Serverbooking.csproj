@@ -196,7 +196,6 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\CRUDController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ModifyController.cs" />
     <Compile Include="Global.asax.cs">
@@ -1082,7 +1081,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\CRUD\" />
     <Folder Include="Views\Modify\" />
   </ItemGroup>
   <ItemGroup>
