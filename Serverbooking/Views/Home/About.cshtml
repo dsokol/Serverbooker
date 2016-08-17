@@ -6,53 +6,25 @@
     <h2>@ViewBag.Title.</h2>
     <h3>@ViewBag.Message</h3>
 
-    <p>Use this area to provide additional information.</p>
-<style>
-    table, th, td {
-        border: 1px solid grey;
-        border-collapse: collapse;
-        padding: 5px;
-    }
 
-        table tr:nth-child(odd) {
-            background-color: #f1f1f1;
-        }
 
-        table tr:nth-child(even) {
-            background-color: #ffffff;
-        }
-</style>
-    <div ng-app='serverApp' ng-controller="serverCtrl">
-        <table> 
-            <tr>
-                <th>ServerID</th>
-                <th>Status</th>
-                <th>ServerName</th>
-                <th>Environment</th>
-                <th>ActiveBookingID</th>
-            </tr>
-            <tr ng-repeat="x in ServerInfo">
-                <td> {{ x.ServerID }} </td>
-                <td> {{ x.Status }} </td>
-                <td> {{ x.ServerName }} </td>
-                <td> {{ x.Environment }} </td>
-                <td> {{ x.ActiveBookingID }} </td>
-           
-            </tr>
-        </table>
+    <div>
+    <h2>Server Information</h2>
+    <p>
+        You can find out more information about our servers such as ServerID,
+        Status, Server Name, Environment and the Active Booking ID.
+    </p>
 
-    </div> 
-<script>
-       
-        var serverApp = angular.module('serverApp', []);
-        serverApp.controller('serverCtrl', function ($scope, $http) {
-            $http.get('http://localhost:59277/Home/About')
-                .then(function (data) {
-                    $scope.serverinfo = data;
-                });
-        });
-        
-                
+</div>
+<div>
+    <h2>Booking Information</h2>
+    <p>You can find out more booking information such as BookingID, ServerID, UserID, Check In Time, and Check Out Time.</p>
 
-</script>
+</div>
+<div>
+    <h2>Book a server</h2>
+    <p>You can easily book a server.</p>
+
+</div> 
+
 

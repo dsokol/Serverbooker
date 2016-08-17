@@ -17,7 +17,7 @@ namespace Serverbooking.Models
         internal static ServerInfo Find(int? serverID)
         {
             throw new NotImplementedException();
-        }
+        } 
     }
     
 }

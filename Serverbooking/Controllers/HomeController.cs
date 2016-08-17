@@ -35,72 +35,15 @@ namespace Serverbooking.Controllers
 
             return View();
         }
-        public ActionResult ServerInfo()
-        {
-            var serverinfo = new List<object>();
-            serverinfo.Add(new { ServerID = "78078", Status = "Busy", ServerName = "TMR234", Environment = "RMS", ActiveBookingID = "Act234" });
-            serverinfo.Add(new { ServerID = "24090", Status = "Free", ServerName = "TMR942", Environment = "TSM", ActiveBookingID = "Act942" });
-            serverinfo.Add(new { ServerID = "25069", Status = "Busy", ServerName = "TMR165", Environment = "TRM", ActiveBookingID = "Act165" });
-            return Json(serverinfo, JsonRequestBehavior.AllowGet);
-        }
+        //public ActionResult ServerInfo()
+        //{
+        //    var serverinfo = new List<object>();
+        //    serverinfo.Add(new { ServerID = "78078", Status = "Busy", ServerName = "TMR234", Environment = "RMS", ActiveBookingID = "Act234" });
+        //    serverinfo.Add(new { ServerID = "24090", Status = "Free", ServerName = "TMR942", Environment = "TSM", ActiveBookingID = "Act942" });
+        //    serverinfo.Add(new { ServerID = "25069", Status = "Busy", ServerName = "TMR165", Environment = "TRM", ActiveBookingID = "Act165" });
+        //    return Json(serverinfo, JsonRequestBehavior.AllowGet);
+        //}
 
-        public ActionResult Data()
-        {
-            var entities = new ServerInfoEntities();
-            return View(entities.InfoServers.ToList());
-        }
-        public ActionResult BookingData()
-        {
-            var entities = new ServerInfoEntities();
-            return View(entities.BookingInfo.ToList());
-        }
-
-        public ActionResult Edit(int? ServerID = 0)
-        {
-
-            if (ServerID == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            
-            ServerInfo serverinfo = Models.ServerInfo.Find(ServerID);
-
-            if (serverinfo == null)
-            {
-                return HttpNotFound();
-            }
-            return View(serverinfo);
-        }
-
-        [HttpPost, ActionName("Edit")]
-        [ValidateAntiForgeryToken]
-
-        //public ActionResult Edit;
-
-        public ActionResult Create([Bind(Include = "ServerID, Status, ServerName, Environment, ActiveBookingID")] ServerInfo serverinfo)
-        {
-            try
-            {
-                if (ModelState.IsValid)
-                {
-                    InfoServer.Add(Server);
-                    SaveChanges();
-                    return RedirectToAction("Data");
-                }
-            }
-            catch (DataException)
-            {
-                ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see the system administrator.");
-                return View();
-            }
-            return View();
-        }
-
-
-        private void SaveChanges()
-        {
-            throw new NotImplementedException();
-        }
     }
 }
 
