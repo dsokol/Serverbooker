@@ -45,7 +45,7 @@
                         ActiveBookingID
                     </th>
                     <th>
-                        @Html.ActionLink("Book A Server", "BookingData", "Home", new { @class = "my-class" })
+                        @Html.ActionLink("Book A Server", "BookingCreate", "BookingInfoesCRUD", new { @class = "my-class" })
                     </th>
                     <th> </th>
                 </tr>
@@ -69,9 +69,9 @@
                             @item.ActiveBookingID
                         </td>
                         <td>
-                            @Html.ActionLink("Edit", "Edit", new { id = item.ServerID }) |
-                            @Html.ActionLink("Details", "Details", new { id = item.ServerID }) |
-                            @Html.ActionLink("Delete", "Delete", new { id = item.ServerID })
+                            @Html.ActionLink("Edit", "ServerEdit", new { id = item.ServerID }) |
+                            @Html.ActionLink("Details", "ServerDetails", new { id = item.ServerID }) |
+                            @Html.ActionLink("Delete", "ServerDelete", new { id = item.ServerID })
                         </td>
                         <td>
                             @*@Html.TextBox("ServerID", Model.ServerID)
@@ -82,7 +82,7 @@
 
             </table>
         <p>
-            @Html.ActionLink("Create New", "Create", new { })
+            @Html.ActionLink("Create New", "ServerCreate", new { })
         </p><br />
     </div>
 

@@ -1076,15 +1076,15 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Scripts\version.json" />
-    <Content Include="Views\ServerInfoCRUD\Create.cshtml" />
-    <Content Include="Views\ServerInfoCRUD\Delete.cshtml" />
-    <Content Include="Views\ServerInfoCRUD\Details.cshtml" />
-    <Content Include="Views\ServerInfoCRUD\Edit.cshtml" />
+    <Content Include="Views\ServerInfoCRUD\ServerCreate.cshtml" />
+    <Content Include="Views\ServerInfoCRUD\ServerDelete.cshtml" />
+    <Content Include="Views\ServerInfoCRUD\ServerDetails.cshtml" />
+    <Content Include="Views\ServerInfoCRUD\ServerEdit.cshtml" />
     <Content Include="Views\ServerInfoCRUD\ServerData.cshtml" />
-    <Content Include="Views\BookingInfoesCRUD\Create.cshtml" />
-    <Content Include="Views\BookingInfoesCRUD\Delete.cshtml" />
-    <Content Include="Views\BookingInfoesCRUD\Details.cshtml" />
-    <Content Include="Views\BookingInfoesCRUD\Edit.cshtml" />
+    <Content Include="Views\BookingInfoesCRUD\BookingCreate.cshtml" />
+    <Content Include="Views\BookingInfoesCRUD\BookingDelete.cshtml" />
+    <Content Include="Views\BookingInfoesCRUD\BookingDetails.cshtml" />
+    <Content Include="Views\BookingInfoesCRUD\BookingEdit.cshtml" />
     <Content Include="Views\BookingInfoesCRUD\BookingData.cshtml" />
   </ItemGroup>
   <ItemGroup>

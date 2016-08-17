@@ -22,7 +22,7 @@ namespace Serverbooking.Models
         }
 
         // GET: BookingInfoesCRUD/Details/5
-        public async Task<ActionResult> Details(int? id)
+        public async Task<ActionResult> BookingDetails(int? id)
         {
             if (id == null)
             {
@@ -37,7 +37,7 @@ namespace Serverbooking.Models
         }
 
         // GET: BookingInfoesCRUD/Create
-        public ActionResult Create()
+        public ActionResult BookingCreate()
         {
             ViewBag.ServerID = new SelectList(db.InfoServers, "ServerID", "ServerID");
             return View();
@@ -48,7 +48,7 @@ namespace Serverbooking.Models
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "BookingID,ServerID,UserID,CheckInTime,CheckOutTime")] BookingInfo bookingInfo)
+        public async Task<ActionResult> BookingCreate([Bind(Include = "BookingID,ServerID,UserID,CheckInTime,CheckOutTime")] BookingInfo bookingInfo)
         {
             if (ModelState.IsValid)
             {
@@ -62,7 +62,7 @@ namespace Serverbooking.Models
         }
 
         // GET: BookingInfoesCRUD/Edit/5
-        public async Task<ActionResult> Edit(int? id)
+        public async Task<ActionResult> BookingEdit(int? id)
         {
             if (id == null)
             {
@@ -82,7 +82,7 @@ namespace Serverbooking.Models
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "BookingID,ServerID,UserID,CheckInTime,CheckOutTime")] BookingInfo bookingInfo)
+        public async Task<ActionResult> BookingEdit([Bind(Include = "BookingID,ServerID,UserID,CheckInTime,CheckOutTime")] BookingInfo bookingInfo)
         {
             if (ModelState.IsValid)
             {
@@ -95,7 +95,7 @@ namespace Serverbooking.Models
         }
 
         // GET: BookingInfoesCRUD/Delete/5
-        public async Task<ActionResult> Delete(int? id)
+        public async Task<ActionResult> BookingDelete(int? id)
         {
             if (id == null)
             {
@@ -110,7 +110,7 @@ namespace Serverbooking.Models
         }
 
         // POST: BookingInfoesCRUD/Delete/5
-        [HttpPost, ActionName("Delete")]
+        [HttpPost, ActionName("BookingDelete")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {

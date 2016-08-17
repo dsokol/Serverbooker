@@ -36,7 +36,7 @@ namespace Serverbooking.Models
         }
 
         // GET: CRUD/Create
-        public ActionResult Create()
+        public ActionResult ServerCreate()
         {
             return View();
         }
@@ -46,7 +46,7 @@ namespace Serverbooking.Models
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "ServerID,Status,ServerName,Environment,ActiveBookingID")] InfoServer infoServer)
+        public async Task<ActionResult> ServerCreate([Bind(Include = "ServerID,Status,ServerName,Environment,ActiveBookingID")] InfoServer infoServer)
         {
             if (ModelState.IsValid)
             {
@@ -59,7 +59,7 @@ namespace Serverbooking.Models
         }
 
         // GET: CRUD/Edit/5
-        public async Task<ActionResult> Edit(int? id)
+        public async Task<ActionResult> ServerEdit(int? id)
         {
             if (id == null)
             {
@@ -78,7 +78,7 @@ namespace Serverbooking.Models
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "ServerID,Status,ServerName,Environment,ActiveBookingID")] InfoServer infoServer)
+        public async Task<ActionResult> ServerEdit([Bind(Include = "ServerID,Status,ServerName,Environment,ActiveBookingID")] InfoServer infoServer)
         {
             if (ModelState.IsValid)
             {
@@ -90,7 +90,7 @@ namespace Serverbooking.Models
         }
 
         // GET: CRUD/Delete/5
-        public async Task<ActionResult> Delete(int? id)
+        public async Task<ActionResult> ServerDelete(int? id)
         {
             if (id == null)
             {
@@ -105,7 +105,7 @@ namespace Serverbooking.Models
         }
 
         // POST: CRUD/Delete/5
-        [HttpPost, ActionName("Delete")]
+        [HttpPost, ActionName("ServerDelete")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
