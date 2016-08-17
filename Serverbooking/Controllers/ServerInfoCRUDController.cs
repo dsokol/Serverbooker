@@ -21,7 +21,7 @@ namespace Serverbooking.Models
         }
 
         // GET: CRUD/Details/5
-        public async Task<ActionResult> Details(int? id)
+        public async Task<ActionResult> ServerDetails(int? id)
         {
             if (id == null)
             {
