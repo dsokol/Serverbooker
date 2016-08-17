@@ -56,7 +56,7 @@ namespace Serverbooking.Models
                 await db.SaveChangesAsync();
                 return RedirectToAction("BookingData");
             }
-
+     
             ViewBag.ServerID = new SelectList(db.InfoServers, "ServerID", "ServerID", bookingInfo.ServerID);
             return View(bookingInfo);
         }
