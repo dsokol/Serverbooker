@@ -39,7 +39,7 @@ namespace Serverbooking.Models
         // GET: BookingInfoesCRUD/Create
         public ActionResult Create()
         {
-            ViewBag.ServerID = new SelectList(db.InfoServers, "ServerID", "Status");
+            ViewBag.ServerID = new SelectList(db.InfoServers, "ServerID", "ServerID");
             return View();
         }
 
@@ -57,7 +57,7 @@ namespace Serverbooking.Models
                 return RedirectToAction("BookingData");
             }
 
-            ViewBag.ServerID = new SelectList(db.InfoServers, "ServerID", "Status", bookingInfo.ServerID);
+            ViewBag.ServerID = new SelectList(db.InfoServers, "ServerID", "ServerID", bookingInfo.ServerID);
             return View(bookingInfo);
         }
 
@@ -73,7 +73,7 @@ namespace Serverbooking.Models
             {
                 return HttpNotFound();
             }
-            ViewBag.ServerID = new SelectList(db.InfoServers, "ServerID", "Status", bookingInfo.ServerID);
+            ViewBag.ServerID = new SelectList(db.InfoServers, "ServerID", "ServerID", bookingInfo.ServerID);
             return View(bookingInfo);
         }
 
@@ -90,7 +90,7 @@ namespace Serverbooking.Models
                 await db.SaveChangesAsync();
                 return RedirectToAction("BookingData");
             }
-            ViewBag.ServerID = new SelectList(db.InfoServers, "ServerID", "Status", bookingInfo.ServerID);
+            ViewBag.ServerID = new SelectList(db.InfoServers, "ServerID", "ServerID", bookingInfo.ServerID);
             return View(bookingInfo);
         }
 

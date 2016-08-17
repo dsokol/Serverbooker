@@ -204,8 +204,8 @@
     <Compile Include="Models\BookingInfo.cs">
       <DependentUpon>dataserverinfo.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\BookingInfoesCRUDController.cs" />
-    <Compile Include="Models\ServerInfoCRUDController.cs" />
+    <Compile Include="Controllers\BookingInfoesCRUDController.cs" />
+    <Compile Include="Controllers\ServerInfoCRUDController.cs" />
     <Compile Include="Models\dataserverinfo.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
