@@ -1,4 +1,44 @@
-﻿@{
+﻿@model Serverbooking.Models.TestUsers
+
+@{
+    ViewBag.Title = "Log In";
+}
+
+
+<body>
+    <div style="margin:0 auto; text-align: center; border: 2px; border-style: solid; width:400px;background-color:bisque">
+        @using (Html.BeginForm())
+        {
+            <table>
+                <tr>
+                    <td>@Html.LabelFor(m => m.Username)</td> 
+                    <td>@Html.TextBoxFor(m => m.Username)</td> 
+                    <td>@Html.ValidationMessageFor(m => m.Username)</td> 
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(m => m.Password)</td> 
+                    <td>@Html.PasswordFor(m => m.Password)</td> 
+                    <td>@Html.ValidationMessageFor(m => m.Password)</td> 
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <input type="submit" value="Log In" />
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        @ViewBag.Message 
+                    </td>
+                </tr>
+            </table>
+        }
+    </div>
+</body>
+
+
+@*@{
     ViewBag.Title = "Home Page";
 }
 
@@ -6,26 +46,26 @@
 <div class="jumbotron">
     <h1>Tokio Millennium Re</h1>
     <p class="lead">Welcome to Tokio Millenniums online server booker</p>
-    
+
 </div>
 
 <div class="row">
     <div class="col-md-4">
         <h2>Server Information</h2>
         <p>
-            You can find out more information about our servers such as ServerID,  
+            You can find out more information about our servers such as ServerID,
             Status, Server Name, Environment and the Active Booking ID.
         </p>
-        
+
     </div>
     <div class="col-md-4">
         <h2>Booking Information</h2>
         <p>You can find out more booking information such as BookingID, ServerID, UserID, Check In Time, and Check Out Time.</p>
-        
+
     </div>
     <div class="col-md-4">
         <h2>Book a server</h2>
         <p>You can easily book a server.</p>
-        
+
     </div>
-</div>
+</div>*@

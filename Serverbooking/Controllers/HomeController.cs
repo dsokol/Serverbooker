@@ -10,6 +10,7 @@ using System.Configuration;
 using System.Web.DynamicData;
 using System.Data.Entity;
 using System.Net;
+using LoginFormApp.Models;
 
 namespace Serverbooking.Controllers
 {
@@ -32,37 +33,59 @@ namespace Serverbooking.Controllers
         }
 
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Login(TestUser u)
-        {
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult Login(TestUser u)
+        //{
      
-            if (ModelState.IsValid) 
-            {
-                using (ServerInfoEntities db = new ServerInfoEntities())
-                {
-                    var v = db.TestUsers.Where(a => a.Username.Equals(u.Username) && a.Password.Equals(u.Password)).FirstOrDefault();
-                    if (v != null)
-                    {
-                        Session["LogedUserID"] = v.UserID.ToString();
-                        Session["LogedUserFullname"] = v.FullName.ToString();
-                        return RedirectToAction("AfterLogin");
-                    }
-                }
-            }
-            return View(u);
-        }
-        public ActionResult AfterLogin()
+        //    if (ModelState.IsValid) 
+        //    {
+        //        using (ServerInfoEntities db = new ServerInfoEntities())
+        //        {
+        //            var v = db.TestUsers.Where(a => a.Username.Equals(u.Username) && a.Password.Equals(u.Password)).FirstOrDefault();
+        //            if (v != null)
+        //            {
+        //                Session["LogedUserID"] = v.UserID.ToString();
+        //                Session["LogedUserFullname"] = v.FullName.ToString();
+        //                return RedirectToAction("AfterLogin");
+        //            }
+        //        }
+        //    }
+        //    return View(u);
+        //}
+        //public ActionResult AfterLogin()
+        //{
+        //    if (Session["LogedUserID"] != null)
+        //    {
+        //        return View("Index");
+        //    }
+        //    else
+        //    {
+        //        return RedirectToAction("Index");
+        //    }
+
+        //}
+        [HttpPost]
+        public ViewResult Index(Login login)
         {
-            if (Session["LogedUserID"] != null)
+            if (ModelState.IsValid)
             {
-                return View("Index");
+                if (login.checkUser(login.username, login.password))
+                {
+                    return View("ServerData", login);
+                }
+                else
+                {
+                    ViewBag.Message = "Invalid Username or Password";
+                    return View();
+                }
             }
             else
             {
-                return RedirectToAction("Index");
+                return View();
             }
         }
+
     }
 }
 
