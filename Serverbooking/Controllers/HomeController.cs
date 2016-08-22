@@ -14,6 +14,7 @@ using LoginFormApp.Models;
 
 namespace Serverbooking.Controllers
 {
+    [HandleError]
     public class HomeController : Controller
     {
 
@@ -21,6 +22,8 @@ namespace Serverbooking.Controllers
         {
             return View();
         }
+
+  
 
         public ActionResult About()
         {
