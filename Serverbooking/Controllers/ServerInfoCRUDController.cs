@@ -51,7 +51,7 @@ namespace Serverbooking.Models
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> ServerCreate([Bind(Include = "ServerID,Status,ServerName,Environment,ActiveBookingID")] InfoServer infoServer)
+        public async Task<ActionResult> ServerCreate([Bind(Include = "ServerID,Status,ServerName,Environment,ActiveBookingID,UserID")] InfoServer infoServer)
         {
             if (ModelState.IsValid)
             {
