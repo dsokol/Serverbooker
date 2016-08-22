@@ -6,7 +6,7 @@
     <edmx:Diagrams>
       <Diagram DiagramId="7e1949e0e22a4d83b620cecdb43a295f" Name="Diagram1">
         <EntityTypeShape EntityType="ServerInfoModel.BookingInfo" Width="1.5" PointX="3.125" PointY="0.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="ServerInfoModel.InfoServer" Width="1.5" PointX="0.875" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServerInfoModel.InfoServer" Width="1.5" PointX="1.125" PointY="0.875" IsExpanded="true" />
         <AssociationConnector Association="ServerInfoModel.FK_BookingInfo_InfoServer" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>

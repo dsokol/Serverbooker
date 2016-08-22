@@ -24,26 +24,11 @@
           <Property Name="ServerName" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Environment" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="ActiveBookingID" Type="int" />
+          <Property Name="UserID" Type="varchar" MaxLength="50" />
         </EntityType>
-        <Association Name="FK_BookingInfo_InfoServer">
-          <End Role="InfoServer" Type="Self.InfoServer" Multiplicity="1" />
-          <End Role="BookingInfo" Type="Self.BookingInfo" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="InfoServer">
-              <PropertyRef Name="ServerID" />
-            </Principal>
-            <Dependent Role="BookingInfo">
-              <PropertyRef Name="ServerID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="ServerInfoModelStoreContainer">
           <EntitySet Name="BookingInfo" EntityType="Self.BookingInfo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="InfoServer" EntityType="Self.InfoServer" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_BookingInfo_InfoServer" Association="Self.FK_BookingInfo_InfoServer">
-            <End Role="InfoServer" EntitySet="InfoServer" />
-            <End Role="BookingInfo" EntitySet="BookingInfo" />
-          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->

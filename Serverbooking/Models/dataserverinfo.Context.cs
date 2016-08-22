@@ -27,10 +27,5 @@ namespace Serverbooking.Models
     
         public virtual DbSet<BookingInfo> BookingInfo { get; set; }
         public virtual DbSet<InfoServer> InfoServers { get; set; }
-
-        internal static ServerInfoEntities ServerInfo(int id)
-        {
-            throw new NotImplementedException();
-        }
     }
 }
