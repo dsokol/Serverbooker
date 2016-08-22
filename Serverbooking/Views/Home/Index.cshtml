@@ -1,44 +1,5 @@
-﻿@model Serverbooking.Models.TestUsers
-
+﻿
 @{
-    ViewBag.Title = "Log In";
-}
-
-
-<body>
-    <div style="margin:0 auto; text-align: center; border: 2px; border-style: solid; width:400px;background-color:bisque">
-        @using (Html.BeginForm())
-        {
-            <table>
-                <tr>
-                    <td>@Html.LabelFor(m => m.Username)</td> 
-                    <td>@Html.TextBoxFor(m => m.Username)</td> 
-                    <td>@Html.ValidationMessageFor(m => m.Username)</td> 
-                </tr>
-                <tr>
-                    <td>@Html.LabelFor(m => m.Password)</td> 
-                    <td>@Html.PasswordFor(m => m.Password)</td> 
-                    <td>@Html.ValidationMessageFor(m => m.Password)</td> 
-                </tr>
-                <tr>
-                    <td></td>
-                    <td>
-                        <input type="submit" value="Log In" />
-                    </td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td>
-                        @ViewBag.Message 
-                    </td>
-                </tr>
-            </table>
-        }
-    </div>
-</body>
-
-
-@*@{
     ViewBag.Title = "Home Page";
 }
 
@@ -68,4 +29,4 @@
         <p>You can easily book a server.</p>
 
     </div>
-</div>*@
+</div>

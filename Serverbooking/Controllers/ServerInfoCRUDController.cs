@@ -19,6 +19,11 @@ namespace Serverbooking.Models
         {
             return View(await db.InfoServers.ToListAsync());
         }
+        public async Task<ActionResult> BookingData()
+        {
+            var bookingInfo = db.BookingInfo.Include(b => b.InfoServer);
+            return View(await bookingInfo.ToListAsync());
+        }
 
         // GET: CRUD/Details/5
         public async Task<ActionResult> ServerDetails(int? id)

@@ -1,4 +1,5 @@
-﻿@model IEnumerable<Serverbooking.Models.InfoServer>
+﻿
+@model IEnumerable<Serverbooking.Models.InfoServer>
 
 @{
     ViewBag.Title = "Index";
@@ -45,6 +46,9 @@
                         ActiveBookingID
                     </th>
                     <th>
+                        UserName
+                    </th>
+                    <th>
                         @Html.ActionLink("Book A Server", "BookingCreate", "BookingInfoesCRUD", null,  new { @style = "color: #ffffff;"})
                     </th>
                     <th> </th>
@@ -67,6 +71,9 @@
                         </td>
                         <td>
                             @item.ActiveBookingID
+                        </td>
+                        <td>
+                           @*@item.UserID*@
                         </td>
                         <td>
                             @Html.ActionLink("Edit", "ServerEdit", new { id = item.ServerID }) |
