@@ -15,6 +15,7 @@
     <EntitySetMapping Name="InfoServers">
       <EntityTypeMapping TypeName="ServerInfoModel.InfoServer">
         <MappingFragment StoreEntitySet="InfoServer">
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
           <ScalarProperty Name="ServerID" ColumnName="ServerID" />
           <ScalarProperty Name="Status" ColumnName="Status" />
           <ScalarProperty Name="ServerName" ColumnName="ServerName" />
