@@ -93,7 +93,7 @@ namespace Serverbooking.Models
             }
             return View(infoServer);
         }
-        [Authorize]
+        
         // GET: CRUD/Delete/5
         public async Task<ActionResult> ServerDelete(int? id)
         {

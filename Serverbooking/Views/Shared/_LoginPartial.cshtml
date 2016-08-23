@@ -7,9 +7,9 @@
 
     <ul class="nav navbar-nav navbar-right">
         <li>
-            @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Home", routeValues: null, htmlAttributes: new { title = "Index" })
+            @Html.ActionLink("Hello " + @Environment.UserName + "!", "Index", "Home", routeValues: null, htmlAttributes: new { title = "" })
         </li>
-        
+
     </ul>
     }
 }
