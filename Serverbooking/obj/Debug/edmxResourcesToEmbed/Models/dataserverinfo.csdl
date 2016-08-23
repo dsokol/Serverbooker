@@ -21,7 +21,7 @@
     <Property Name="Environment" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="ActiveBookingID" Type="Int32" />
     <NavigationProperty Name="BookingInfo" Relationship="Self.FK_BookingInfo_InfoServer" FromRole="InfoServer" ToRole="BookingInfo" />
-    <Property Name="UserID" Type="String" Nullable="false" />
+    <Property Name="UserID" Type="String" Nullable="true" />
   </EntityType>
   <Association Name="FK_BookingInfo_InfoServer">
     <End Role="InfoServer" Type="Self.InfoServer" Multiplicity="1" />
