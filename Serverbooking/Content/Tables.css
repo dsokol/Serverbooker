@@ -14,13 +14,12 @@ th, td {
     text-align: left;
     padding: 8px;
 }
-
-tr:nth-child(even){background-color: #f2f2f2}
-
+/* Sets every other row background color to grey*/
+tr:nth-child(even){
+    background-color: #f2f2f2;
+}
+/* Sets Header background and text color*/
 th {
     background-color:  #4682B4;
-    color: white;
-}
-a.my-class {
     color: white;
 }

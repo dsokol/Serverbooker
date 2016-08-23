@@ -47,8 +47,7 @@ namespace Serverbooking.Models
         }
 
         // POST: CRUD/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> ServerCreate([Bind(Include = "ServerID,Status,ServerName,Environment,ActiveBookingID,UserID")] InfoServer infoServer)
@@ -79,8 +78,7 @@ namespace Serverbooking.Models
         }
 
         // POST: CRUD/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> ServerEdit([Bind(Include = "ServerID,Status,ServerName,Environment,ActiveBookingID,UserID")] InfoServer infoServer)

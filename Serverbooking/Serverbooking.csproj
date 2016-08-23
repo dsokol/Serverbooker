@@ -211,11 +211,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>dataserverinfo.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\dataserverinfo.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>dataserverinfo.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\dataserverinfo.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
