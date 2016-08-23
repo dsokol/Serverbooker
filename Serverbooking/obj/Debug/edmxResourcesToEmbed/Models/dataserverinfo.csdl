@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ServerInfoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="BookingInfo">
+    <Key>
+      <PropertyRef Name="BookingID" />
+    </Key>
+    <Property Name="BookingID" Type="Int32" Nullable="false" />
+    <Property Name="ServerID" Type="Int32" Nullable="false" />
+    <Property Name="UserID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CheckInTime" Type="DateTime" Precision="3" />
+    <Property Name="CheckOutTime" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="InfoServer" Relationship="Self.FK_BookingInfo_InfoServer" FromRole="BookingInfo" ToRole="InfoServer" />
+  </EntityType>
+  <EntityType Name="InfoServer">
+    <Key>
+      <PropertyRef Name="ServerID" />
+    </Key>
+    <Property Name="ServerID" Type="Int32" Nullable="false" />
+    <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ServerName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Environment" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ActiveBookingID" Type="Int32" />
+    <NavigationProperty Name="BookingInfo" Relationship="Self.FK_BookingInfo_InfoServer" FromRole="InfoServer" ToRole="BookingInfo" />
+    <Property Name="UserID" Type="String" Nullable="true" />
+  </EntityType>
+  <Association Name="FK_BookingInfo_InfoServer">
+    <End Role="InfoServer" Type="Self.InfoServer" Multiplicity="1" />
+    <End Role="BookingInfo" Type="Self.BookingInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="InfoServer">
+        <PropertyRef Name="ServerID" />
+      </Principal>
+      <Dependent Role="BookingInfo">
+        <PropertyRef Name="ServerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ServerInfoEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="BookingInfo" EntityType="Self.BookingInfo" />
+    <EntitySet Name="InfoServers" EntityType="Self.InfoServer" />
+    <AssociationSet Name="FK_BookingInfo_InfoServer" Association="Self.FK_BookingInfo_InfoServer">
+      <End Role="InfoServer" EntitySet="InfoServers" />
+      <End Role="BookingInfo" EntitySet="BookingInfo" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

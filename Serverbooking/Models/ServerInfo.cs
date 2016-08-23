@@ -12,7 +12,12 @@ namespace Serverbooking.Models
         public string ServerName { get; set; }
         public string Environment { get; set; }
         public int ActiveBookingID { get; set; }
-       
+        public string Secret { get; set; }
+
+        internal static ServerInfo Find(int? serverID)
+        {
+            throw new NotImplementedException();
+        } 
     }
     
 }

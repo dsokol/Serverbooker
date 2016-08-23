@@ -1,0 +1,25 @@
+﻿body {
+        padding-top: 50px;
+        padding-bottom: 20px;
+}
+
+/* Sets design for tables */
+
+    table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+    text-align: left;
+    padding: 8px;
+}
+/* Sets every other row background color to grey*/
+tr:nth-child(even){
+    background-color: #f2f2f2;
+}
+/* Sets Header background and text color*/
+th {
+    background-color:  #4682B4;
+    color: white;
+}
